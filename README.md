@@ -16,18 +16,16 @@ Sono Light Yagami, un programmatore italiano di 20 anni con una profonda passion
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=LightYagami28&show_icons=true&theme=radical&include_all_commits=true&count_private=true)
 
 📈 **Linguaggi e Strumenti:**
-[![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=for-the-badge&logo=javascript)](link_al_progetto_js)
-[![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)](link_al_progetto_rust)
-[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](link_al_progetto_python)
-[![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm)](link_al_progetto_npm)
-[![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white)](link_al_progetto_powershell)
-[![Batch Script](https://img.shields.io/badge/Batch-007ACC?style=for-the-badge&logo=windows&logoColor=white)](link_al_progetto_batch)
+- [![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=for-the-badge&logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)](https://www.rust-lang.org/)
+- [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/downloads/)
+- [![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm)](https://www.npmjs.com/get-npm)
+- [![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white)](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell)
+- [![Batch Script](https://img.shields.io/badge/Batch-007ACC?style=for-the-badge&logo=windows&logoColor=white)](https://www.tutorialspoint.com/batch_script/batch_script_introduction.htm)
 
 💻 **IDE:**
-[![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)](link_al_tuo_profilo_vscode)
-[![JetBrains](https://img.shields.io/badge/JetBrains-000000?style=for-the-badge&logo=jetbrains&logoColor=white)](link_al_tuo_profilo_jetbrains)
-  - [Scarica Visual Studio Code](https://code.visualstudio.com/download)
-  - [Scarica JetBrains](https://www.jetbrains.com/)
+- [![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)](https://code.visualstudio.com/download)
+- [![JetBrains](https://img.shields.io/badge/JetBrains-000000?style=for-the-badge&logo=jetbrains&logoColor=white)](https://www.jetbrains.com/)
 
 📫 **Come contattarmi:**
 [![Telegram](https://img.shields.io/badge/Telegram-%40LightYagami28-2CA5E0?style=for-the-badge&logo=telegram)](https://t.me/LightYagami28)

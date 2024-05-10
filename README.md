@@ -39,3 +39,6 @@ I'm Light Yagami, a 20-year-old Italian programmer with a deep passion for compu
 ⚡ **Fun Fact:** I believe that open-source projects can take experiences to a whole new level.
 
 With years of computer science study, I strive to push the boundaries of what's possible through code. Feel free to explore my repositories and discover some exciting projects I've been working on!
+
+
+<a href="https://app.daily.dev/lightyagami28"><img src="https://api.daily.dev/devcards/v2/H7vpMs3rU0xoJBvWAn3pN.png?type=default&r=0cm" width="356" alt="LightYagami28's Dev Card"/></a>

@@ -1,21 +1,21 @@
-### Ciao a tutti! 👋
+### Welcome to My Profile! 👋
 
-Sono Light Yagami, un programmatore italiano di 20 anni con una profonda passione per l'informatica e la programmazione.
+I'm Light Yagami, a 20-year-old Italian programmer with a deep passion for computer science and coding.
 
-🔭 Attualmente sto lavorando per migliorare e potenziare mod di giochi.
+🔭 Currently, I'm working on enhancing and empowering open-source projects.
 
-🌱 Sono costantemente alla ricerca di nuove tecnologie per ampliare le mie competenze.
+🌱 I'm always on the lookout for new technologies to expand my skill set.
 
-👯 Cerco collaborazioni su progetti di modding emozionanti e iniziative open-source.
+👯 I actively seek collaborations on exciting open-source projects and initiatives.
 
-💬 Chiedimi qualsiasi cosa su modding di giochi, programmazione e argomenti legati alla tecnologia.
+💬 Feel free to reach out to me to discuss anything related to open-source projects, programming, or technology.
 
-🛠️ Sono specializzato anche nel ripristinare e proteggere vecchi progetti, dando nuova vita al codice legacy e risolvendo vulnerabilità.
+🛠️ I specialize in restoring and safeguarding old projects, breathing new life into legacy code and addressing vulnerabilities.
 
 📊 **GitHub Stats:**
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=LightYagami28&show_icons=true&theme=radical&include_all_commits=true&count_private=true)
 
-📈 **Linguaggi e Strumenti:**
+📈 **Languages and Tools:**
 - [![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=for-the-badge&logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)](https://www.rust-lang.org/)
 - [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/downloads/)
@@ -27,15 +27,15 @@ Sono Light Yagami, un programmatore italiano di 20 anni con una profonda passion
 - [![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)](https://code.visualstudio.com/download)
 - [![JetBrains](https://img.shields.io/badge/JetBrains-000000?style=for-the-badge&logo=jetbrains&logoColor=white)](https://www.jetbrains.com/)
 
-📫 **Come contattarmi:**
+📫 **How to Reach Me:**
 [![Telegram](https://img.shields.io/badge/Telegram-%40LightYagami28-2CA5E0?style=for-the-badge&logo=telegram)](https://t.me/LightYagami28)
 [![E-mail](https://img.shields.io/badge/E--mail-maule2703%40ik.me-red?style=for-the-badge)](mailto:maule2703@ik.me)
 
-💖 **Sostieni il mio lavoro:**
+💖 **Support My Work:**
 [![Ko-fi](https://img.shields.io/badge/Support%20Me%20on-Ko--fi-brightgreen?style=for-the-badge&logo=ko-fi)](https://ko-fi.com/lightyagami28)
 
-😄 **Pronomi:** Lui/Loro
+😄 **Pronouns:** He/They
 
-⚡ **Curiosità:** Credo che le mod possano portare le esperienze di gioco a un livello completamente nuovo.
+⚡ **Fun Fact:** I believe that open-source projects can take experiences to a whole new level.
 
-Con anni di studio in informatica, mi impegno a spingere i limiti di ciò che è possibile attraverso il codice. Sentiti libero di esplorare i miei repository e scoprire alcuni progetti interessanti su cui ho lavorato!
+With years of computer science study, I strive to push the boundaries of what's possible through code. Feel free to explore my repositories and discover some exciting projects I've been working on!

@@ -2,3 +2,4 @@
 .idea
 bot.py
 .json
+.env

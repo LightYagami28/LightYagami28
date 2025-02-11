@@ -3,67 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bot Collection</title>
     <style>
+        /* Global Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: #f7f7f7;
+            color: #444;
+            line-height: 1.6;
         }
+
+        h1, h2 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Header Styling */
         header {
-            background-color: #333;
+            background-color: #2c3e50;
             color: #fff;
-            padding: 10px 0;
+            padding: 20px 0;
             text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        /* Container for Content */
         .container {
-            width: 80%;
-            margin: 20px auto;
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
             padding: 20px;
             background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
         }
+
         h2 {
-            color: #444;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            margin: 10px 0;
-        }
-        a {
+            font-size: 1.8em;
             color: #333;
-            text-decoration: none;
+            margin-bottom: 20px;
         }
+
+        /* List Styles */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        li:hover {
+            background-color: #bdc3c7;
+        }
+
+        a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+
+        a:hover {
+            color: #e74c3c;
+            text-decoration: underline;
+        }
+
+        /* Footer Styling */
         footer {
             text-align: center;
-            padding: 10px;
-            background-color: #333;
-            color: white;
-            position: absolute;
+            padding: 15px;
+            background-color: #2c3e50;
+            color: #fff;
+            position: relative;
             bottom: 0;
             width: 100%;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
         }
+
+        footer p {
+            font-size: 1em;
+            margin: 0;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .container {
+                width: 95%;
+                margin: 20px auto;
+            }
+
+            h2 {
+                font-size: 1.6em;
+            }
+
+            li {
+                font-size: 1.1em;
+            }
+
+            footer {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .container {
+                width: 100%;
+                padding: 15px;
+            }
+
+            h2 {
+                font-size: 1.4em;
+            }
+
+            li {
+                font-size: 1.0em;
+            }
+
+            footer {
+                padding: 8px;
+            }
+        }
+
     </style>
 </head>
 <body>
+
     <header>
         <h1>Welcome to My Bot Collection</h1>
     </header>
 
     <div class="container">
-        <h2>List of Bots:</h2>
+        <h2>Our Bots:</h2>
         <ul>
-            <li><a href="death/info.md">Death Bot</a></li>
+            <li><a href="death/info.md" target="_blank">Death Bot</a></li>
         </ul>
     </div>
 
     <footer>
         <p>&copy; 2025 Bot Collection. All rights reserved.</p>
     </footer>
+
 </body>
 </html>

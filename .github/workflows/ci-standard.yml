@@ -1,0 +1,115 @@
+# CI standard riusabile: lint, test, build, seo:check, audit npm,
+# Lighthouse CI (accessibilità con axe-core, SEO, best practice) e axe.
+# Azioni fissate per SHA completo; la versione è nel commento per Dependabot.
+name: CI standard
+
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        description: Cartella del progetto Node (con package.json e package-lock.json)
+        type: string
+        default: "."
+      node-version:
+        type: string
+        default: "22"
+      ignore-scripts:
+        description: npm ci senza script di installazione (più sicuro; metti false se il build ne ha bisogno)
+        type: boolean
+        default: true
+      audit-level:
+        description: Livello minimo che fa fallire npm audit (low, moderate, high, critical; vuoto = salta)
+        type: string
+        default: high
+      run-lighthouse:
+        type: boolean
+        default: false
+      lighthouse-config:
+        description: Percorso del lighthouserc.json relativo a working-directory
+        type: string
+        default: lighthouserc.json
+      axe-dir:
+        description: Cartella statica (relativa a working-directory) da servire e controllare con axe; vuoto = salta
+        type: string
+        default: ""
+      axe-paths:
+        description: Percorsi da controllare con axe, separati da spazio
+        type: string
+        default: "/"
+      run-dependency-review:
+        description: Solo sulle PR; sui repo privati del piano Free non è disponibile
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Lint, test, build, SEO e accessibilità
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: npm
+          cache-dependency-path: ${{ inputs.working-directory }}/package-lock.json
+      - name: Installazione dipendenze
+        env:
+          IGNORA: ${{ inputs.ignore-scripts }}
+        run: |
+          if [ "$IGNORA" = "true" ]; then npm ci --ignore-scripts; else npm ci; fi
+      - name: Lint
+        run: npm run lint --if-present
+      - name: Test
+        run: npm run test --if-present
+      - name: Build
+        run: npm run build --if-present
+      - name: Controllo SEO
+        run: npm run seo:check --if-present
+      - name: Audit dipendenze di produzione
+        if: inputs.audit-level != ''
+        env:
+          LIVELLO: ${{ inputs.audit-level }}
+        run: npm audit --omit=dev --audit-level="$LIVELLO"
+      - name: Lighthouse CI
+        if: inputs.run-lighthouse
+        env:
+          CONFIG: ${{ inputs.lighthouse-config }}
+        run: npx --yes @lhci/cli@0.15.1 autorun --config="$CONFIG"
+      - name: axe
+        if: inputs.axe-dir != ''
+        env:
+          CARTELLA: ${{ inputs.axe-dir }}
+          PERCORSI: ${{ inputs.axe-paths }}
+        run: |
+          python3 -m http.server 8080 --bind 127.0.0.1 --directory "$CARTELLA" >/dev/null 2>&1 &
+          for i in $(seq 1 20); do curl -fsS http://127.0.0.1:8080/ >/dev/null && break; sleep 1; done
+          URLS=""; for p in $PERCORSI; do URLS="$URLS http://127.0.0.1:8080$p"; done
+          npx --yes @axe-core/cli@4.14.0 $URLS --chromedriver-path "$CHROMEWEBDRIVER/chromedriver" --exit
+      - name: Rapporti Lighthouse
+        if: always() && inputs.run-lighthouse
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: lighthouse
+          path: ${{ inputs.working-directory }}/.lighthouseci
+          if-no-files-found: ignore
+          include-hidden-files: true
+          retention-days: 14
+
+  dependency-review:
+    name: Revisione dipendenze
+    if: inputs.run-dependency-review && github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
+        with:
+          fail-on-severity: high

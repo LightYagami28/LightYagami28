@@ -1,0 +1,42 @@
+# Prova dei workflow riusabili sul progetto di esempio in ci-standard/esempio.
+name: Prova CI standard
+
+on:
+  pull_request:
+    paths:
+      - ci-standard/**
+      - .github/workflows/ci-standard.yml
+      - .github/workflows/codeql-standard.yml
+      - .github/workflows/ci-standard-prova.yml
+  push:
+    branches: [main]
+    paths:
+      - ci-standard/**
+      - .github/workflows/ci-standard.yml
+      - .github/workflows/codeql-standard.yml
+      - .github/workflows/ci-standard-prova.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: prova-ci-standard-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci-standard.yml
+    with:
+      working-directory: ci-standard/esempio
+      run-lighthouse: true
+      axe-dir: dist
+      run-dependency-review: true
+  codeql:
+    uses: ./.github/workflows/codeql-standard.yml
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    with:
+      languages: javascript-typescript

@@ -1,0 +1,37 @@
+# Modello da copiare in .github/dependabot.yml del repo.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Rome
+    groups:
+      azioni:
+        patterns: ["*"]
+    commit-message:
+      prefix: ci
+    cooldown:
+      default-days: 7
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Rome
+    open-pull-requests-limit: 5
+    groups:
+      produzione:
+        dependency-type: production
+        update-types: [minor, patch]
+      sviluppo:
+        dependency-type: development
+        update-types: [minor, patch]
+    commit-message:
+      prefix: deps
+    cooldown:
+      default-days: 7
+      semver-major-days: 30

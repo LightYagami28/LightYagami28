@@ -25,7 +25,7 @@ Gli script npm assenti vengono saltati (`--if-present`).
 | Input | Default | Significato |
 | --- | --- | --- |
 | `working-directory` | `.` | Cartella del progetto Node |
-| `node-version` | `22` | Versione di Node |
+| `node-version` | `26` | Versione di Node |
 | `ignore-scripts` | `true` | `npm ci --ignore-scripts`; `false` se il build ne ha bisogno |
 | `audit-level` | `high` | Soglia di `npm audit --omit=dev`; vuoto per saltare |
 | `run-lighthouse` | `false` | Esegue Lighthouse CI |
@@ -59,7 +59,7 @@ jobs:
     uses: LightYagami28/LightYagami28/.github/workflows/ci-standard.yml@<SHA>
     with:
       working-directory: bot
-      node-version: "22"
+      node-version: "26"
       audit-level: moderate
 ```
 

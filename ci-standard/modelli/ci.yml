@@ -20,7 +20,7 @@ jobs:
   ci:
     uses: LightYagami28/LightYagami28/.github/workflows/ci-standard.yml@<SHA>
     with:
-      node-version: "22"
+      node-version: "26"
       run-lighthouse: true          # serve lighthouserc.json
       axe-dir: dist                 # cartella del sito statico; vuoto per saltare
       run-dependency-review: ${{ !github.event.repository.private }}

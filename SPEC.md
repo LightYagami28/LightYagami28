@@ -34,7 +34,7 @@ Input dei workflow: vedi [docs/ci-riusabile.md](docs/ci-riusabile.md). Nessun se
 | Semgrep (immagine) | 1.183.0 |
 | @lhci/cli | 0.15.1 |
 | @axe-core/cli | 4.14.0 |
-| Node (default) | 22 |
+| Node (default) | 26 |
 
 Tutte le azioni sono fissate per SHA con il tag nel commento.
 

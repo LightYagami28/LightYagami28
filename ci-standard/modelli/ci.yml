@@ -1,0 +1,34 @@
+# Modello da copiare in .github/workflows/ci.yml del repo.
+# Sostituisci <SHA> con lo SHA completo del commit di LightYagami28/LightYagami28
+# che contiene la versione approvata dei workflow (vedi ci-standard/README.md).
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    uses: LightYagami28/LightYagami28/.github/workflows/ci-standard.yml@<SHA>
+    with:
+      node-version: "22"
+      run-lighthouse: true          # serve lighthouserc.json
+      axe-dir: dist                 # cartella del sito statico; vuoto per saltare
+      run-dependency-review: ${{ !github.event.repository.private }}
+  codeql:
+    uses: LightYagami28/LightYagami28/.github/workflows/codeql-standard.yml@<SHA>
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    with:
+      languages: javascript-typescript

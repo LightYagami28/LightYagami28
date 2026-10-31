@@ -1,0 +1,13 @@
+{
+  "name": "ci-standard-esempio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "lint": "node --check src/build.mjs && node --check src/seo-check.mjs",
+    "test": "node --test test/seo-check.test.mjs",
+    "build": "node src/build.mjs",
+    "seo:check": "node src/seo-check.mjs dist/index.html"
+  }
+}

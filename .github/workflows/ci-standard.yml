@@ -12,7 +12,7 @@ on:
         default: "."
       node-version:
         type: string
-        default: "22"
+        default: "26"
       ignore-scripts:
         description: npm ci senza script di installazione (più sicuro; metti false se il build ne ha bisogno)
         type: boolean

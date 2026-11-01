@@ -28,7 +28,7 @@ header h1 {
     margin: 30px auto;
     padding: 20px;
     background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
     border-radius: 8px;
 }
 
@@ -75,7 +75,7 @@ a:hover {
 }
 
 /* Responsive Design */
-@media screen and (max-width: 768px) {
+@media screen and (width <= 768px) {
     header h1 {
         font-size: 2em;
     }

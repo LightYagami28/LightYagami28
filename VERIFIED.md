@@ -1,12 +1,3 @@
-# ✓ Verified
+# Commit firmati
 
-Questo repository utilizza firma GPG per tutti i commit.
-
-**Chiave GPG**: `CC21AE8B31EBE91F`
-**Nome**: Light Yagami
-
-Tutti i commit in questo repository sono crittograficamente firmati e verificabili su GitHub.
-
----
-
-✓ All commits are GPG signed and verified.
+I commit di questo repository sono firmati con GPG (chiave `CC21AE8B31EBE91F`, Light Yagami) e verificabili su GitHub.

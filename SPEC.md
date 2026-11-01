@@ -13,7 +13,7 @@ Repository del profilo GitHub e sede dei workflow CI riusabili usati dagli altri
 
 ## Architettura
 
-```
+```text
 .github/workflows/  ci-standard.yml, codeql-standard.yml (workflow_call), ci-standard-prova.yml, semgrep.yml
 .github/dependabot.yml
 ci-standard/        README, modelli/ (ci.yml, dependabot.yml, lighthouserc.json), esempio/ (progetto di prova)

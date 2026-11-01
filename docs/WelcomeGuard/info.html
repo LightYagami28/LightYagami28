@@ -79,6 +79,12 @@
             width: 100%;
             font-size: 0.9em;
         }
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none;
+                transform: none;
+            }
+        }
     </style>
 </head>
 <body>

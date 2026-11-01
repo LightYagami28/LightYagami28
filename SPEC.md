@@ -46,7 +46,7 @@ Tutte le azioni sono fissate per SHA con il tag nel commento.
 
 ## Sicurezza
 
-Permessi minimi per workflow, `persist-credentials: false`, `timeout-minutes` su ogni job, `npm ci --ignore-scripts` di default, strumenti npx a versione fissa, riferimenti a questo repo per SHA, CodeQL e Semgrep attivi.
+Permessi minimi per workflow, `persist-credentials: false`, `timeout-minutes` su ogni job, `npm ci --ignore-scripts` sempre, strumenti globali npm a versione fissa e senza script, riferimenti a questo repo per SHA, CodeQL e Semgrep attivi.
 
 ## Limiti noti
 

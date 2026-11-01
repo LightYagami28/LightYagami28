@@ -26,7 +26,6 @@ Gli script npm assenti vengono saltati (`--if-present`).
 | --- | --- | --- |
 | `working-directory` | `.` | Cartella del progetto Node |
 | `node-version` | `26` | Versione di Node |
-| `ignore-scripts` | `true` | `npm ci --ignore-scripts`; `false` se il build ne ha bisogno |
 | `audit-level` | `high` | Soglia di `npm audit --omit=dev`; vuoto per saltare |
 | `run-lighthouse` | `false` | Esegue Lighthouse CI |
 | `lighthouse-config` | `lighthouserc.json` | Configurazione, relativa a `working-directory` |

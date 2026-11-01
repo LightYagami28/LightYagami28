@@ -21,8 +21,8 @@ Gli script npm mancanti vengono saltati (`--if-present`).
 - `permissions: contents: read` di default; permessi in più solo sul job che li usa.
 - `persist-credentials: false` su ogni checkout, `timeout-minutes` su ogni job, `concurrency` nel chiamante.
 - Cache npm tramite `actions/setup-node` (serve `package-lock.json`).
-- `npm ci --ignore-scripts` di default; `ignore-scripts: false` solo se il build ne ha bisogno.
-- Strumenti npx con versione fissata: `@lhci/cli@0.15.1`, `@axe-core/cli@4.14.0`.
+- `npm ci --ignore-scripts` sempre: il build non deve dipendere da script di installazione.
+- Strumenti installati con versione fissata e senza script: `@lhci/cli@0.15.1`, `@axe-core/cli@4.14.0`.
 
 ## SHA delle azioni (verificati il 2026-10-31)
 

@@ -79,6 +79,12 @@
             width: 100%;
             font-size: 0.9em;
         }
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none;
+                transform: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -93,8 +99,8 @@
         <p>Welcome to WelcomeGuard! We encourage you to carefully review our Privacy Policy and Terms of Service to ensure you fully understand how we operate and protect your information. Below are the links to both documents:</p>
 
         <div class="button-container">
-            <a href="privacypolicy.html" class="btn" target="_blank">View Privacy Policy</a>
-            <a href="termsofservice.html" class="btn" target="_blank">View Terms of Service</a>
+            <a href="privacypolicy.html" class="btn" target="_blank" rel="noopener noreferrer">View Privacy Policy</a>
+            <a href="termsofservice.html" class="btn" target="_blank" rel="noopener noreferrer">View Terms of Service</a>
         </div>
     </div>
 

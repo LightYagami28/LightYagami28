@@ -13,10 +13,6 @@ on:
       node-version:
         type: string
         default: "26"
-      ignore-scripts:
-        description: npm ci senza script di installazione (più sicuro; metti false se il build ne ha bisogno)
-        type: boolean
-        default: true
       audit-level:
         description: Livello minimo che fa fallire npm audit (low, moderate, high, critical; vuoto = salta)
         type: string
@@ -62,10 +58,7 @@ jobs:
           cache: npm
           cache-dependency-path: ${{ inputs.working-directory }}/package-lock.json
       - name: Installazione dipendenze
-        env:
-          IGNORA: ${{ inputs.ignore-scripts }}
-        run: |
-          if [ "$IGNORA" = "true" ]; then npm ci --ignore-scripts; else npm ci; fi
+        run: npm ci --ignore-scripts
       - name: Lint
         run: npm run lint --if-present
       - name: Test
@@ -83,7 +76,9 @@ jobs:
         if: inputs.run-lighthouse
         env:
           CONFIG: ${{ inputs.lighthouse-config }}
-        run: npx --yes @lhci/cli@0.15.1 autorun --config="$CONFIG"
+        run: |
+          npm install --global --ignore-scripts @lhci/cli@0.15.1
+          lhci autorun --config="$CONFIG"
       - name: axe
         if: inputs.axe-dir != ''
         env:
@@ -93,7 +88,8 @@ jobs:
           python3 -m http.server 8080 --bind 127.0.0.1 --directory "$CARTELLA" >/dev/null 2>&1 &
           for i in $(seq 1 20); do curl -fsS http://127.0.0.1:8080/ >/dev/null && break; sleep 1; done
           URLS=""; for p in $PERCORSI; do URLS="$URLS http://127.0.0.1:8080$p"; done
-          npx --yes @axe-core/cli@4.14.0 $URLS --chromedriver-path "$CHROMEWEBDRIVER/chromedriver" --exit
+          npm install --global --ignore-scripts @axe-core/cli@4.14.0
+          axe $URLS --chromedriver-path "$CHROMEWEBDRIVER/chromedriver" --exit
       - name: Rapporti Lighthouse
         if: always() && inputs.run-lighthouse
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2

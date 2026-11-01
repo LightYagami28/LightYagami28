@@ -1,5 +1,5 @@
-import { copyFile, mkdir } from "node:fs/promises";
+import { mkdirSync, copyFileSync } from "node:fs";
 
-await mkdir("dist", { recursive: true });
-await copyFile("src/index.html", "dist/index.html");
+mkdirSync("dist", { recursive: true });
+copyFileSync("src/index.html", "dist/index.html");
 console.log("build: dist/index.html");

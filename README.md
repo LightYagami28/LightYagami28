@@ -24,7 +24,7 @@ Sviluppatore italiano. Costruisco bot, strumenti di automazione e utility di sic
 
 ## Strumenti proprietari
 
-Oltre ai progetti pubblici sviluppo strumenti proprietari, non pubblicati: servizi e bot su misura, utility di automazione e componenti per siti web. Sono mantenuti con la stessa pipeline di qualità (lint, test, build, controlli di accessibilità e sicurezza) descritta qui sotto.
+Sviluppo anche strumenti non pubblicati: servizi e bot su misura, utility di automazione e componenti per siti web. Usano la stessa pipeline di lint, test, build, accessibilità e sicurezza descritta sotto.
 
 ## CI standard riusabile
 

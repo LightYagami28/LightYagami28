@@ -14,5 +14,5 @@ test("una pagina senza title viene segnalata", () => {
 test("un percorso fuori dalla cartella di lavoro viene rifiutato", () => {
   assert.throws(() => percorsoSicuro("../segreto.html", "/lavoro"));
   assert.throws(() => percorsoSicuro("/etc/passwd", "/lavoro"));
-  assert.match(percorsoSicuro("dist/index.html", "/lavoro"), /dist.index\.html$/);
+  assert.match(percorsoSicuro("dist/index.html", "/lavoro"), /dist.index\.html$/u);
 });

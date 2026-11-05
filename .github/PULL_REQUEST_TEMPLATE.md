@@ -1,9 +1,9 @@
 ## Descrizione
-Cosa cambia e perchÃ©.
+Cosa cambia e perché.
 
 ## Tipo di modifica
 - [ ] Bug fix
-- [ ] Nuova funzionalitÃ 
+- [ ] Nuova funzionalità
 - [ ] Documentazione
 - [ ] Refactoring
 

@@ -1,5 +1,5 @@
 ## Descrizione
-Cosa cambia e perchÃ©.
+Cosa cambia e perché.
 
 ## Verifica
 - [ ] Build ok

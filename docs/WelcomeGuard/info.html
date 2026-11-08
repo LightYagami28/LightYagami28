@@ -54,12 +54,18 @@
             font-size: 1.2em;
             text-decoration: none;
             border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
             display: inline-block;
         }
         .btn:hover {
             background-color: #004080;
-            transform: scale(1.05);
+        }
+        @media (prefers-reduced-motion: no-preference) {
+            .btn {
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+            .btn:hover {
+                transform: scale(1.05);
+            }
         }
         .btn:active {
             background-color: #003366;
@@ -78,12 +84,6 @@
             bottom: 0;
             width: 100%;
             font-size: 0.9em;
-        }
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                transition: none;
-                transform: none;
-            }
         }
     </style>
 </head>

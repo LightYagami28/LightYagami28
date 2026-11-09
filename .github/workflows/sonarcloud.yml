@@ -1,0 +1,24 @@
+name: SonarCloud
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  sonarcloud:
+    runs-on: ubuntu-latest
+    env:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      # Il segreto SONAR_TOKEN manca nelle PR da fork (e in quelle di Dependabot): l'analisi si salta.
+      - name: SonarCloud scan
+        if: env.SONAR_TOKEN != ''
+        uses: "SonarSource/sonarqube-scan-action@4d1dc0c91ee400dc\
+          f8a6dddf2f705ac36542e304" # v8.4.0

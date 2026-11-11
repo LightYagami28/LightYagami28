@@ -3,9 +3,20 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: weekly
-    open-pull-requests-limit: 5
+      interval: daily
+    open-pull-requests-limit: 20
     groups:
-      codeql-action:
-        patterns:
-          - github/codeql-action*
+      minori-e-patch:
+        update-types:
+          - minor
+          - patch
+  - package-ecosystem: npm
+    directory: /ci-standard/esempio
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 20
+    groups:
+      minori-e-patch:
+        update-types:
+          - minor
+          - patch

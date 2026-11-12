@@ -1,22 +1,37 @@
+# Dependabot: controllo giornaliero di tutte le dipendenze, major comprese.
+# Minori e patch arrivano in una sola PR per ecosistema, le major in una PR separata.
+# versioning-strategy: increase alza anche i range nel manifest all'ultima versione.
 version: 2
 updates:
-  - package-ecosystem: github-actions
-    directory: /
-    schedule:
-      interval: daily
-    open-pull-requests-limit: 20
-    groups:
-      minori-e-patch:
-        update-types:
-          - minor
-          - patch
-  - package-ecosystem: npm
-    directory: /ci-standard/esempio
-    schedule:
-      interval: daily
-    open-pull-requests-limit: 20
-    groups:
-      minori-e-patch:
-        update-types:
-          - minor
-          - patch
+- package-ecosystem: github-actions
+  directory: /
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 20
+  commit-message:
+    prefix: dipendenze(github-actions)
+  groups:
+    minori-e-patch:
+      update-types:
+      - minor
+      - patch
+    major:
+      update-types:
+      - major
+- package-ecosystem: npm
+  directory: /ci-standard/esempio
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 20
+  versioning-strategy: increase
+  commit-message:
+    prefix: dipendenze(npm)
+    prefix-development: dipendenze-sviluppo(npm)
+  groups:
+    minori-e-patch:
+      update-types:
+      - minor
+      - patch
+    major:
+      update-types:
+      - major

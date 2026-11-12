@@ -4,35 +4,35 @@
 # versioning-strategy: increase alza anche i range nel manifest all'ultima versione.
 version: 2
 updates:
-- package-ecosystem: github-actions
-  directory: /
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 20
-  commit-message:
-    prefix: dipendenze(github-actions)
-  groups:
-    minori-e-patch:
-      update-types:
-      - minor
-      - patch
-    major:
-      update-types:
-      - major
-- package-ecosystem: npm
-  directory: /
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 20
-  versioning-strategy: increase
-  commit-message:
-    prefix: dipendenze(npm)
-    prefix-development: dipendenze-sviluppo(npm)
-  groups:
-    minori-e-patch:
-      update-types:
-      - minor
-      - patch
-    major:
-      update-types:
-      - major
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 20
+    commit-message:
+      prefix: dipendenze(github-actions)
+    groups:
+      minori-e-patch:
+        update-types:
+          - minor
+          - patch
+      major:
+        update-types:
+          - major
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 20
+    versioning-strategy: increase
+    commit-message:
+      prefix: dipendenze(npm)
+      prefix-development: dipendenze-sviluppo(npm)
+    groups:
+      minori-e-patch:
+        update-types:
+          - minor
+          - patch
+      major:
+        update-types:
+          - major

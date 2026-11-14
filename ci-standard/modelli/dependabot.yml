@@ -1,37 +1,38 @@
-# Modello da copiare in .github/dependabot.yml del repo.
+# Modello da copiare in .github/dependabot.yml del repo (aggiungere gli altri ecosistemi presenti).
+# Dependabot: controllo giornaliero di tutte le dipendenze, major comprese.
+# Minori e patch arrivano in una sola PR per ecosistema, le major in una PR separata.
+# versioning-strategy: increase alza anche i range nel manifest all'ultima versione.
 version: 2
 updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: weekly
-      day: monday
-      time: "06:00"
-      timezone: Europe/Rome
-    groups:
-      azioni:
-        patterns: ["*"]
+      interval: daily
+    open-pull-requests-limit: 20
     commit-message:
-      prefix: ci
-    cooldown:
-      default-days: 7
+      prefix: dipendenze(github-actions)
+    groups:
+      minori-e-patch:
+        update-types:
+          - minor
+          - patch
+      major:
+        update-types:
+          - major
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: weekly
-      day: monday
-      time: "06:00"
-      timezone: Europe/Rome
-    open-pull-requests-limit: 5
-    groups:
-      produzione:
-        dependency-type: production
-        update-types: [minor, patch]
-      sviluppo:
-        dependency-type: development
-        update-types: [minor, patch]
+      interval: daily
+    open-pull-requests-limit: 20
+    versioning-strategy: increase
     commit-message:
-      prefix: deps
-    cooldown:
-      default-days: 7
-      semver-major-days: 30
+      prefix: dipendenze(npm)
+      prefix-development: dipendenze-sviluppo(npm)
+    groups:
+      minori-e-patch:
+        update-types:
+          - minor
+          - patch
+      major:
+        update-types:
+          - major

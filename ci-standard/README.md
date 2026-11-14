@@ -2,27 +2,41 @@
 
 Workflow riusabili per i repo di LightYagami28:
 
-- `.github/workflows/ci-standard.yml`: `npm ci`, lint, test, build, `seo:check`, `npm audit` sulle dipendenze di produzione, Lighthouse CI (accessibilità con axe-core, SEO, best practice, prestazioni), axe sul sito statico, revisione delle dipendenze sulle PR.
-- `.github/workflows/codeql-standard.yml`: CodeQL, separato perché richiede `security-events: write`.
-- `.github/workflows/ci-standard-prova.yml`: prova dei due workflow sul progetto `ci-standard/esempio`.
+- `.github/workflows/ci-standard.yml`: `npm ci`, lint, test, build,
+  `seo:check`, `npm audit` sulle dipendenze di produzione, Lighthouse CI
+  (accessibilità con axe-core, SEO, best practice, prestazioni), axe sul
+  sito statico, revisione delle dipendenze sulle PR.
+- `.github/workflows/codeql-standard.yml`: CodeQL, separato perché richiede
+  `security-events: write`.
+- `.github/workflows/ci-standard-prova.yml`: prova dei due workflow sul
+  progetto `ci-standard/esempio`.
 
 Gli script npm mancanti vengono saltati (`--if-present`).
 
 ## Come si usa
 
-1. Copia `modelli/ci.yml` in `.github/workflows/ci.yml` e sostituisci `<SHA>` con lo SHA completo del commit approvato di questo repo.
+1. Copia `modelli/ci.yml` in `.github/workflows/ci.yml` e sostituisci
+   `<SHA>` con lo SHA completo del commit approvato di questo repo.
 2. Copia `modelli/dependabot.yml` in `.github/dependabot.yml`.
-3. Se usi Lighthouse, copia `modelli/lighthouserc.json` e imposta `staticDistDir` sulla cartella del build.
-4. Repo privati sul piano Free: la revisione delle dipendenze non è disponibile; il modello la attiva solo sui repo pubblici. CodeQL sui privati richiede GitHub Code Security: togli il job `codeql` se non c'è.
+3. Se usi Lighthouse, copia `modelli/lighthouserc.json` e imposta
+   `staticDistDir` sulla cartella del build.
+4. Repo privati sul piano Free: la revisione delle dipendenze non è
+   disponibile; il modello la attiva solo sui repo pubblici. CodeQL sui
+   privati richiede GitHub Code Security: togli il job `codeql` se non c'è.
 
 ## Regole
 
-- Azioni fissate per SHA completo con la versione nel commento sulla stessa riga, così Dependabot le aggiorna.
-- `permissions: contents: read` di default; permessi in più solo sul job che li usa.
-- `persist-credentials: false` su ogni checkout, `timeout-minutes` su ogni job, `concurrency` nel chiamante.
+- Azioni fissate per SHA completo con la versione nel commento sulla
+  stessa riga, così Dependabot le aggiorna.
+- `permissions: contents: read` di default; permessi in più solo sul job
+  che li usa.
+- `persist-credentials: false` su ogni checkout, `timeout-minutes` su ogni
+  job, `concurrency` nel chiamante.
 - Cache npm tramite `actions/setup-node` (serve `package-lock.json`).
-- `npm ci --ignore-scripts` sempre: il build non deve dipendere da script di installazione.
-- Strumenti installati con versione fissata e senza script: `@lhci/cli@0.15.1`, `@axe-core/cli@4.14.0`.
+- `npm ci --ignore-scripts` sempre: il build non deve dipendere da script
+  di installazione.
+- Strumenti installati con versione fissata e senza script:
+  `@lhci/cli@0.15.1`, `@axe-core/cli@4.14.0`.
 
 ## SHA delle azioni (verificati il 2026-10-31)
 

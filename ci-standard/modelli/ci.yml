@@ -1,9 +1,10 @@
 # Modello da copiare in .github/workflows/ci.yml del repo.
 # Sostituisci <SHA> con lo SHA completo del commit di LightYagami28/LightYagami28
 # che contiene la versione approvata dei workflow (vedi ci-standard/README.md).
+---
 name: CI
 
-on:
+"on":
   pull_request:
   push:
     branches: [main]

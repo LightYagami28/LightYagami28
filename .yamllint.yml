@@ -1,0 +1,11 @@
+---
+# Le azioni sono fissate per SHA con il commento della versione sulla stessa
+# riga (serve a Dependabot per gli aggiornamenti): superano le 80 colonne.
+# Un solo spazio prima dei commenti inline, come li genera Dependabot.
+extends: default
+
+rules:
+  line-length:
+    max: 120
+  comments:
+    min-spaces-from-content: 1

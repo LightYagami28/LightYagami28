@@ -1,3 +1,4 @@
+---
 # Modello da copiare in .github/dependabot.yml del repo (aggiungere gli altri ecosistemi presenti).
 # Dependabot: controllo giornaliero di tutte le dipendenze, major comprese.
 # Minori e patch arrivano in una sola PR per ecosistema, le major in una PR separata.

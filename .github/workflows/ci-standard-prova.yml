@@ -1,7 +1,8 @@
+---
 # Prova dei workflow riusabili sul progetto di esempio in ci-standard/esempio.
 name: Prova CI standard
 
-on:
+"on":
   pull_request:
     paths:
       - ci-standard/**

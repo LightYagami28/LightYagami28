@@ -1,12 +1,14 @@
 # Light Yagami
 
-Sviluppatore italiano. Costruisco bot, strumenti di automazione e utility di sicurezza, e rimetto in sesto codice datato mantenendolo aggiornato.
+Sviluppatore italiano. Costruisco bot, strumenti di automazione e utility
+di sicurezza, e rimetto in sesto codice datato mantenendolo aggiornato.
 
 ## Aree di lavoro
 
 - **Bot**: Telegram e Discord, in Python, PHP e JavaScript.
 - **Automazione**: script e servizi per attività ripetitive di server e progetti.
-- **Sicurezza**: ricerca su minacce e vulnerabilità, analisi forense, aggiornamento di dipendenze vulnerabili.
+- **Sicurezza**: ricerca su minacce e vulnerabilità, analisi forense,
+  aggiornamento di dipendenze vulnerabili.
 - **Ingegneria inversa**: firmware, tabelle ACPI e hardware.
 - **Manutenzione**: aggiornamento di codebase datate, CI e pipeline di qualità.
 
@@ -24,15 +26,21 @@ Sviluppatore italiano. Costruisco bot, strumenti di automazione e utility di sic
 
 ## Strumenti proprietari
 
-Sviluppo anche strumenti non pubblicati: servizi e bot su misura, utility di automazione e componenti per siti web. Usano la stessa pipeline di lint, test, build, accessibilità e sicurezza descritta sotto.
+Sviluppo anche strumenti non pubblicati: servizi e bot su misura, utility
+di automazione e componenti per siti web. Usano la stessa pipeline di lint,
+test, build, accessibilità e sicurezza descritta sotto.
 
 ## CI standard riusabile
 
-Workflow GitHub Actions riusabili per lint, test, build, controlli SEO e accessibilità, audit delle dipendenze, Lighthouse, axe e CodeQL, con azioni fissate per SHA e Node 26 come default. Guida: [docs/ci-riusabile.md](docs/ci-riusabile.md). Specifica: [SPEC.md](SPEC.md).
+Workflow GitHub Actions riusabili per lint, test, build, controlli SEO e
+accessibilità, audit delle dipendenze, Lighthouse, axe e CodeQL, con azioni
+fissate per SHA e Node 26 come default. Guida:
+[docs/ci-riusabile.md](docs/ci-riusabile.md). Specifica: [SPEC.md](SPEC.md).
 
 ## Stack
 
-Python, PHP, JavaScript/TypeScript, Node.js, PowerShell, HTML/CSS, Docker, GitHub Actions.
+Python, PHP, JavaScript/TypeScript, Node.js, PowerShell, HTML/CSS, Docker,
+GitHub Actions.
 
 ## Contatti
 

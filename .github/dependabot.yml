@@ -1,3 +1,4 @@
+---
 # Dependabot: controllo giornaliero di tutte le dipendenze, major comprese.
 # Minori e patch arrivano in una sola PR per ecosistema, le major in una PR separata.
 # versioning-strategy: increase alza anche i range nel manifest all'ultima versione.

@@ -1,8 +1,9 @@
+---
 # CodeQL riusabile. Separato dal CI standard perché richiede security-events: write:
 # il job chiamante deve concederlo esplicitamente.
 name: CodeQL standard
 
-on:
+"on":
   workflow_call:
     inputs:
       languages:

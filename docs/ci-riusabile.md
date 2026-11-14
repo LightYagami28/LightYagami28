@@ -1,6 +1,8 @@
 # Guida alla CI standard riusabile
 
-I workflow vivono in `.github/workflows/` di questo repository e si richiamano da qualsiasi altro repo con `workflow_call`. Panoramica e tabella degli SHA: [ci-standard/README.md](../ci-standard/README.md).
+I workflow vivono in `.github/workflows/` di questo repository e si
+richiamano da qualsiasi altro repo con `workflow_call`. Panoramica e
+tabella degli SHA: [ci-standard/README.md](../ci-standard/README.md).
 
 ## Workflow disponibili
 
@@ -15,9 +17,13 @@ Gli script npm assenti vengono saltati (`--if-present`).
 ## Adozione in un repo
 
 1. Copia `ci-standard/modelli/ci.yml` in `.github/workflows/ci.yml`.
-2. Sostituisci `<SHA>` con lo SHA completo del commit approvato di questo repo (`git ls-remote https://github.com/LightYagami28/LightYagami28 refs/heads/main`). Non usare `@main`: il riferimento per SHA rende la CI riproducibile.
+2. Sostituisci `<SHA>` con lo SHA completo del commit approvato di questo
+   repo (`git ls-remote https://github.com/LightYagami28/LightYagami28
+   refs/heads/main`). Non usare `@main`: il riferimento per SHA rende la CI
+   riproducibile.
 3. Copia `ci-standard/modelli/dependabot.yml` in `.github/dependabot.yml`.
-4. Per Lighthouse copia `ci-standard/modelli/lighthouserc.json` nel progetto e imposta `staticDistDir` sulla cartella del build.
+4. Per Lighthouse copia `ci-standard/modelli/lighthouserc.json` nel
+   progetto e imposta `staticDistDir` sulla cartella del build.
 5. Serve `package-lock.json` (cache npm e `npm ci`).
 
 ## Input di `ci-standard.yml`
@@ -33,7 +39,8 @@ Gli script npm assenti vengono saltati (`--if-present`).
 | `axe-paths` | `/` | Percorsi da controllare, separati da spazio |
 | `run-dependency-review` | `false` | Revisione dipendenze sulle PR (non disponibile sui privati del piano Free) |
 
-`codeql-standard.yml`: `languages` (default `javascript-typescript`, separati da virgola), `build-mode` (default `none`).
+`codeql-standard.yml`: `languages` (default `javascript-typescript`, separati
+da virgola), `build-mode` (default `none`).
 
 ## Esempi d'uso
 
@@ -76,12 +83,17 @@ jobs:
       languages: python
 ```
 
-Per `edex-ui` si usa `languages: javascript-typescript`. Per `TGbotPHP` (PHP) CodeQL non ha un analizzatore: restano i workflow già presenti nel repo.
+Per `edex-ui` si usa `languages: javascript-typescript`. Per `TGbotPHP`
+(PHP) CodeQL non ha un analizzatore: restano i workflow già presenti nel
+repo.
 
 ## Aggiornare gli SHA
 
-Per ogni azione: `gh api repos/<azione>/commits/<tag> --jq .sha`, poi aggiorna SHA e commento della versione sulla stessa riga. Dependabot (`github-actions`) propone gli aggiornamenti.
+Per ogni azione: `gh api repos/<azione>/commits/<tag> --jq .sha`, poi
+aggiorna SHA e commento della versione sulla stessa riga. Dependabot
+(`github-actions`) propone gli aggiornamenti.
 
 ## Prova
 
-La prova gira su ogni PR di questo repo tramite `ci-standard-prova.yml` sul progetto `ci-standard/esempio`.
+La prova gira su ogni PR di questo repo tramite `ci-standard-prova.yml` sul
+progetto `ci-standard/esempio`.

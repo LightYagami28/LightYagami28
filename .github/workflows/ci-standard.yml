@@ -1,9 +1,10 @@
 # CI standard riusabile: lint, test, build, seo:check, audit npm,
 # Lighthouse CI (accessibilità con axe-core, SEO, best practice) e axe.
 # Azioni fissate per SHA completo; la versione è nel commento per Dependabot.
+---
 name: CI standard
 
-on:
+"on":
   workflow_call:
     inputs:
       working-directory:

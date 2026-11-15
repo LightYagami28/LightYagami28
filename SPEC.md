@@ -123,10 +123,10 @@ default `contents: read`.
    workflow.
 2. Estendere Dependabot a `npm` in `ci-standard/esempio` e verificare che la
    prova resti verde.
-4. Adottare `ci-standard.yml` in almeno un repo pubblico Node, con SHA fissato.
-5. Aggiungere la variante per progetti Python (versione Python, lint, test,
+3. Adottare `ci-standard.yml` in almeno un repo pubblico Node, con SHA fissato.
+4. Aggiungere la variante per progetti Python (versione Python, lint, test,
    audit).
-6. Ricontrollare la tabella del profilo contro `gh repo list`.
+5. Ricontrollare la tabella del profilo contro `gh repo list`.
 
 ## Fuori ambito
 

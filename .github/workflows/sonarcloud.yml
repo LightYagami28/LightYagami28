@@ -23,7 +23,9 @@ jobs:
           node-version: 24
       - name: Test con copertura del progetto di esempio
         working-directory: ci-standard/esempio
-        run: npm run coverage
+        run: |
+          npm run coverage
+          sed -i 's#^SF:#SF:ci-standard/esempio/#' lcov.info
       # Il segreto SONAR_TOKEN manca nelle PR da fork (e in quelle di Dependabot): l'analisi si salta.
       - name: SonarCloud scan
         if: env.SONAR_TOKEN != ''

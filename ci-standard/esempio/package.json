@@ -2,12 +2,12 @@
   "name": "ci-standard-esempio",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
   "license": "MIT",
   "scripts": {
-    "lint": "node --check src/build.mjs && node --check src/seo-check.mjs",
-    "test": "node --test test/seo-check.test.mjs",
-    "build": "node src/build.mjs",
-    "seo:check": "node src/seo-check.mjs dist/index.html"
+    "lint": "node --check src/build.js && node --check src/seo-check.js && node --check src/cli.js",
+    "test": "node --test test/seo-check.test.js",
+    "coverage": "node --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info test/seo-check.test.js",
+    "build": "node -e \"require('./src/cli').run()\" build",
+    "seo:check": "node -e \"require('./src/cli').run()\" seo dist/index.html"
   }
 }

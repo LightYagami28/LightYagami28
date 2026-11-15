@@ -1,0 +1,5 @@
+---
+exclude_paths:
+  # ci-standard/esempio e un progetto di esempio per la guida ci-standard: lo
+  # esegue la sua CI (ci-standard-prova.yml), non e codice del profilo.
+  - "ci-standard/esempio/**"

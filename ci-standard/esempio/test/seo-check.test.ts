@@ -1,19 +1,18 @@
-"use strict";
+import assert from "node:assert/strict";
+import fs from "node:fs/promises";
+import os from "node:os";
+import path from "node:path";
+import { test } from "node:test";
+import { fileURLToPath } from "node:url";
 
-const assert = require("node:assert/strict");
-const fs = require("node:fs/promises");
-const os = require("node:os");
-const path = require("node:path");
-const { test } = require("node:test");
+import { build } from "../src/build.ts";
+import { main, run } from "../src/cli.ts";
+import { controlla, esegui, percorsoSicuro } from "../src/seo-check.ts";
 
-const { build } = require("../src/build");
-const { main, run } = require("../src/cli");
-const { controlla, esegui, percorsoSicuro } = require("../src/seo-check");
+const PAGINA: string = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "src", "index.html");
 
-const PAGINA = path.join(__dirname, "..", "src", "index.html");
-
-async function cartella() {
-  const radice = await fs.mkdtemp(path.join(os.tmpdir(), "esempio-"));
+async function cartella(): Promise<string> {
+  const radice: string = await fs.mkdtemp(path.join(os.tmpdir(), "esempio-"));
   await fs.mkdir(path.join(radice, "src"));
   await fs.copyFile(PAGINA, path.join(radice, "src", "index.html"));
   return radice;
@@ -38,7 +37,7 @@ test("un percorso fuori dalla cartella di lavoro viene rifiutato", () => {
 });
 
 test("build copia la pagina in dist e il controllo la accetta", async () => {
-  const radice = await cartella();
+  const radice: string = await cartella();
   assert.equal(await build(radice), path.join("dist", "index.html"));
   assert.deepEqual(await esegui(path.join("dist", "index.html"), radice), {
     codice: 0,
@@ -47,7 +46,7 @@ test("build copia la pagina in dist e il controllo la accetta", async () => {
 });
 
 test("esegui segnala gli errori con codice 1", async () => {
-  const radice = await cartella();
+  const radice: string = await cartella();
   await fs.writeFile(path.join(radice, "vuota.html"), "<html></html>");
   const { codice, messaggio } = await esegui("vuota.html", radice);
   assert.equal(codice, 1);
@@ -55,10 +54,10 @@ test("esegui segnala gli errori con codice 1", async () => {
 });
 
 test("la riga di comando esegue build e seo:check", async () => {
-  const radice = await cartella();
-  const precedente = process.cwd();
-  const righe = [];
-  const out = { log: (riga) => righe.push(riga), error: (riga) => righe.push(riga) };
+  const radice: string = await cartella();
+  const precedente: string = process.cwd();
+  const righe: string[] = [];
+  const out = { log: (riga: string) => righe.push(riga), error: (riga: string) => righe.push(riga) };
   process.chdir(radice);
   try {
     assert.equal(await main(["build"], out), 0);
@@ -73,8 +72,8 @@ test("la riga di comando esegue build e seo:check", async () => {
 });
 
 test("run imposta il codice di uscita del processo", async () => {
-  const radice = await cartella();
-  const precedente = process.cwd();
+  const radice: string = await cartella();
+  const precedente: string = process.cwd();
   process.chdir(radice);
   try {
     await run(["build"]);
@@ -82,5 +81,16 @@ test("run imposta il codice di uscita del processo", async () => {
   } finally {
     process.chdir(precedente);
     process.exitCode = undefined;
+  }
+});
+
+test("senza argomento il controllo SEO fallisce leggendo la cartella di lavoro", async () => {
+  const radice: string = await cartella();
+  const precedente: string = process.cwd();
+  process.chdir(radice);
+  try {
+    await assert.rejects(main(["seo"], { log: () => undefined, error: () => undefined }));
+  } finally {
+    process.chdir(precedente);
   }
 });

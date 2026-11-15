@@ -2,7 +2,7 @@
 
 ## Segnalare una vulnerabilità
 
-Se trovi una vulnerabilità, NON aprirla come issue pubblica. Scrivi a
+Se trovi una vulnerabilità, non aprirla come issue pubblica. Scrivi a
 **maule2703&#64;gmail.com** con:
 
 - descrizione del problema,

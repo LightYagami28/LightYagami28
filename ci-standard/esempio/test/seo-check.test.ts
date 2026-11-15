@@ -5,9 +5,9 @@ import path from "node:path";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
 
-import { build } from "../src/build.ts";
-import { main, run } from "../src/cli.ts";
-import { controlla, esegui, percorsoSicuro } from "../src/seo-check.ts";
+import {build} from "../src/build.ts";
+import {main, start} from "../src/cli.ts";
+import {check, run, safePath} from "../src/seo-check.ts";
 
 const PAGINA: string = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "src", "index.html");
 
@@ -19,38 +19,38 @@ async function cartella(): Promise<string> {
 }
 
 test("la pagina di esempio passa il controllo SEO", async () => {
-  assert.deepEqual(controlla(await fs.readFile(PAGINA, "utf8")), []);
+  assert.deepEqual(check(await fs.readFile(PAGINA, "utf8")), []);
 });
 
 test("una pagina senza title viene segnalata", () => {
-  assert.ok(controlla('<html lang="it"><h1>x</h1></html>').length > 0);
+  assert.ok(check('<html lang="it"><h1>x</h1></html>').length > 0);
 });
 
 test("una pagina senza h1 viene segnalata", () => {
-  assert.ok(controlla("<html></html>").includes("serve esattamente un h1"));
+  assert.ok(check("<html></html>").includes("serve esattamente un h1"));
 });
 
 test("un percorso fuori dalla cartella di lavoro viene rifiutato", () => {
-  assert.throws(() => percorsoSicuro("../segreto.html", "/lavoro"));
-  assert.throws(() => percorsoSicuro("/etc/passwd", "/lavoro"));
-  assert.match(percorsoSicuro("dist/index.html", "/lavoro"), /dist.index\.html$/u);
+  assert.throws(() => safePath("../segreto.html", "/lavoro"));
+  assert.throws(() => safePath("/etc/passwd", "/lavoro"));
+  assert.match(safePath("dist/index.html", "/lavoro"), /dist.index\.html$/u);
 });
 
 test("build copia la pagina in dist e il controllo la accetta", async () => {
   const radice: string = await cartella();
   assert.equal(await build(radice), path.join("dist", "index.html"));
-  assert.deepEqual(await esegui(path.join("dist", "index.html"), radice), {
-    codice: 0,
-    messaggio: "seo:check ok",
+  assert.deepEqual(await run(path.join("dist", "index.html"), radice), {
+    code: 0,
+    message: "seo:check ok",
   });
 });
 
-test("esegui segnala gli errori con codice 1", async () => {
+test("esegui segnala gli errori con code 1", async () => {
   const radice: string = await cartella();
   await fs.writeFile(path.join(radice, "vuota.html"), "<html></html>");
-  const { codice, messaggio } = await esegui("vuota.html", radice);
-  assert.equal(codice, 1);
-  assert.match(messaggio, /manca lang/u);
+  const {code, message} = await run("vuota.html", radice);
+  assert.equal(code, 1);
+  assert.match(message, /manca lang/u);
 });
 
 test("la riga di comando esegue build e seo:check", async () => {
@@ -71,12 +71,12 @@ test("la riga di comando esegue build e seo:check", async () => {
   assert.equal(righe[1], "seo:check ok");
 });
 
-test("run imposta il codice di uscita del processo", async () => {
+test("start imposta il codice di uscita del processo", async () => {
   const radice: string = await cartella();
   const precedente: string = process.cwd();
   process.chdir(radice);
   try {
-    await run(["build"]);
+    await start(["build"]);
     assert.equal(process.exitCode, 0);
   } finally {
     process.chdir(precedente);

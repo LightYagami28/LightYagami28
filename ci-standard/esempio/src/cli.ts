@@ -1,26 +1,40 @@
-import { build } from "./build.ts";
-import { esegui } from "./seo-check.ts";
+import {build} from './build.ts';
+import {run as runCheck} from './seo-check.ts';
 
-interface Uscita {
-  log(riga: string): void;
-  error(riga: string): void;
+export interface output {
+    readonly log: (line: string) => void;
+    readonly error: (line: string) => void;
 }
 
-export async function main(args: string[], out: Uscita = console): Promise<number> {
-  const [comando, argomento] = args;
-  if (comando === "build") {
-    out.log(`build: ${await build()}`);
-    return 0;
-  }
-  const { codice, messaggio } = await esegui(argomento ?? "");
-  if (codice === 0) {
-    out.log(messaggio);
-  } else {
-    out.error(messaggio);
-  }
-  return codice;
-}
+const FIRST = 0;
+const SECOND = 1;
+const SKIP = 1;
 
-export async function run(argv: string[] = process.argv.slice(1)): Promise<void> {
-  process.exitCode = await main(argv);
-}
+/**
+ * Run a command line: `build` or `seo <page>`.
+ * @param {readonly string[]} args Arguments without the interpreter.
+ * @param {output} out Where lines are written.
+ * @returns {Promise<number>} Process exit code.
+ */
+export const main = (args: readonly string[], out: output = console): Promise<number> => {
+    if (args[FIRST] === 'build') {
+        return build().then((page: string): number => {
+            out.log(`build: ${page}`);
+            return 0;
+        });
+    }
+    return runCheck(args[SECOND] ?? '').then(({code, message}): number => {
+        (code === 0 ? out.log : out.error)(message);
+        return code;
+    });
+};
+
+/**
+ * Entry point used by the npm scripts.
+ * @param {readonly string[]} argv Arguments after the script name.
+ * @returns {Promise<void>} Resolves once the exit code is set.
+ */
+export const start = (argv: readonly string[] = process.argv.slice(SKIP)): Promise<void> =>
+    main(argv).then((code: number): void => {
+        process.exitCode = code;
+    });

@@ -1,0 +1,17 @@
+title: "[Annuncio] "
+body:
+  - type: markdown
+    attributes:
+      value: Questa categoria è riservata a chi mantiene il repository.
+  - type: textarea
+    id: annuncio
+    attributes:
+      label: Annuncio
+      description: Cosa cambia, per chi e da quando
+    validations:
+      required: true
+  - type: textarea
+    id: azioni
+    attributes:
+      label: Cosa serve fare
+      description: Eventuali passi richiesti a chi usa il progetto

@@ -1,0 +1,28 @@
+# Set comune di etichette, sincronizzato da .github/workflows/label-sync.yml.
+- name: bug
+  color: d73a4a
+  description: Qualcosa non funziona come dovrebbe
+- name: miglioramento
+  color: a2eeef
+  description: Nuova funzione o miglioria
+  aliases: [enhancement]
+- name: documentazione
+  color: 0075ca
+  description: Modifiche alla documentazione
+  aliases: [documentation]
+- name: sicurezza
+  color: b60205
+  description: Questioni di sicurezza
+- name: dipendenze
+  color: 0366d6
+  description: Aggiornamento o modifica delle dipendenze
+- name: qualità
+  color: 5319e7
+  description: Qualità del codice, test, analisi statica
+- name: domanda
+  color: d876e3
+  description: Richiesta di chiarimenti
+  aliases: [question]
+- name: roadmap
+  color: fbca04
+  description: Voce della roadmap

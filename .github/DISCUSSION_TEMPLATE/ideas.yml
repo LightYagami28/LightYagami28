@@ -1,0 +1,22 @@
+title: "[Idea] "
+labels: [miglioramento]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Idea
+      description: Cosa vorresti vedere nel progetto
+    validations:
+      required: true
+  - type: textarea
+    id: motivo
+    attributes:
+      label: Perché serve
+      description: Il caso d'uso concreto che oggi non è coperto
+    validations:
+      required: true
+  - type: textarea
+    id: alternative
+    attributes:
+      label: Alternative
+      description: Cosa usi oggi al suo posto

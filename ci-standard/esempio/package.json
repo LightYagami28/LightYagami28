@@ -12,7 +12,7 @@
     "seo:check": "node -e \"import('./src/cli.ts').then((cli) => cli.start())\" seo dist/index.html"
   },
   "devDependencies": {
-    "@types/node": "^24.0.0",
-    "typescript": "^5.9.0"
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
   }
 }

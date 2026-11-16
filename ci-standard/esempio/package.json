@@ -5,9 +5,14 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "lint": "node --check src/build.mjs && node --check src/seo-check.mjs",
-    "test": "node --test test/seo-check.test.mjs",
-    "build": "node src/build.mjs",
-    "seo:check": "node src/seo-check.mjs dist/index.html"
+    "lint": "tsc --noEmit",
+    "test": "node --test test/seo-check.test.ts",
+    "coverage": "node --test --experimental-test-coverage --test-coverage-exclude=test/** --test-reporter=lcov --test-reporter-destination=lcov.info test/seo-check.test.ts",
+    "build": "node -e \"import('./src/cli.ts').then((cli) => cli.start())\" build",
+    "seo:check": "node -e \"import('./src/cli.ts').then((cli) => cli.start())\" seo dist/index.html"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0"
   }
 }

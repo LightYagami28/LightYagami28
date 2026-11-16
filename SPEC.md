@@ -44,8 +44,8 @@ Incongruenze trovate:
 - `ci-standard/README.md` elenca `github/codeql-action` v4.39.1 (SHA
   `9b32540...`); i workflow usano v4.39.3 (`33d7b85...`). Da allineare
   (requisito 6).
-- `sonar.sources=docs` misura solo HTML e CSS; il codice di
-  `ci-standard/esempio/src` non è in analisi (requisito 8).
+- `sonar.sources` comprende `docs` e `ci-standard/esempio/src`; la copertura
+  arriva da `npm run coverage` nel workflow SonarCloud (requisito 8).
 - `.stylelintrc.json` è presente ma nessun `package.json` o workflow lo esegue.
 
 ## Architettura
@@ -123,11 +123,10 @@ default `contents: read`.
    workflow.
 2. Estendere Dependabot a `npm` in `ci-standard/esempio` e verificare che la
    prova resti verde.
-3. Portare `ci-standard/esempio/src` sotto Sonar con coverage 100%.
-4. Adottare `ci-standard.yml` in almeno un repo pubblico Node, con SHA fissato.
-5. Aggiungere la variante per progetti Python (versione Python, lint, test,
+3. Adottare `ci-standard.yml` in almeno un repo pubblico Node, con SHA fissato.
+4. Aggiungere la variante per progetti Python (versione Python, lint, test,
    audit).
-6. Ricontrollare la tabella del profilo contro `gh repo list`.
+5. Ricontrollare la tabella del profilo contro `gh repo list`.
 
 ## Fuori ambito
 
@@ -138,8 +137,6 @@ default `contents: read`.
 
 ## Decisioni aperte per il proprietario
 
-- Includere `ci-standard/esempio` nell'analisi SonarCloud o mantenere solo
-  `docs`.
 - Repo privati del piano Free: revisione dipendenze e CodeQL restano
   disattivati, o si attiva GitHub Code Security.
 - Autorizzare l'app Codacy per il check sulle PR (stato attuale da confermare).

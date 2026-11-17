@@ -1,0 +1,21 @@
+name: Etichette per percorso
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  labeler:
+    name: Etichetta la pull request
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Etichetta
+        uses: actions/labeler@bf12e9b00b37c5c0ca2b87b79b2daf7891dbda13  # v7.0.0
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          sync-labels: true

@@ -4,3 +4,6 @@ contact_links:
   - name: Segnalazione di sicurezza
     url: mailto:maule2703@gmail.com
     about: Non aprire issue pubbliche per vulnerabilità.
+  - name: Domande e proposte
+    url: https://github.com/LightYagami28/LightYagami28/discussions
+    about: Per le domande e le idee usa le Discussioni

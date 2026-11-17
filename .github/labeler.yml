@@ -1,0 +1,24 @@
+# Etichette per percorso, applicate da actions/labeler (.github/workflows/labeler.yml).
+documentazione:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '**/*.md'
+          - 'docs/**'
+dipendenze:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.github/dependabot.yml'
+          - 'ci-standard/esempio/package-lock.json'
+          - 'ci-standard/esempio/package.json'
+qualità:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'ci-standard/**'
+          - 'sonar-project.properties'
+          - '.github/workflows/ci-standard*.yml'
+          - '.github/workflows/semgrep.yml'
+sicurezza:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.github/workflows/codeql-standard.yml'
+          - 'SECURITY.md'

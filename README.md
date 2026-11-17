@@ -45,3 +45,8 @@ GitHub Actions.
 ## Contatti
 
 Per collaborazioni apri una issue o una discussione sui repository GitHub.
+
+## Licenza
+
+Tutti i diritti riservati: copia, modifica e ridistribuzione richiedono il permesso scritto del titolare
+(vedi [LICENSE](LICENSE)).

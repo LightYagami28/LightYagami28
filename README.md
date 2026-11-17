@@ -50,3 +50,7 @@ Per collaborazioni apri una issue o una discussione sui repository GitHub.
 
 Tutti i diritti riservati: copia, modifica e ridistribuzione richiedono il permesso scritto del titolare
 (vedi [LICENSE](LICENSE)).
+
+## Documentazione
+
+[Indice documentazione](docs/README.md).

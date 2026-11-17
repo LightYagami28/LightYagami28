@@ -1,0 +1,20 @@
+title: "[Domanda] "
+labels: [domanda]
+body:
+  - type: textarea
+    id: domanda
+    attributes:
+      label: Domanda
+      description: Cosa vuoi sapere o ottenere
+    validations:
+      required: true
+  - type: textarea
+    id: provato
+    attributes:
+      label: Cosa hai già provato
+      description: Comandi eseguiti, pagine consultate, errori ricevuti (senza token né dati personali)
+  - type: input
+    id: versione
+    attributes:
+      label: Versione e sistema
+      description: Versione del programma e sistema operativo

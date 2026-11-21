@@ -44,7 +44,7 @@ test("build copia la pagina in dist e il controllo la accetta", async () => {
 test("esegui segnala gli errori con code 1", async () => {
   const {code, message} = await run("vuota.html", "test/fixtures");
   assert.equal(code, 1);
-  assert.match(message, /manca lang/u);
+  assert.match(message, /meta description/u);
 });
 
 test("la riga di comando esegue build e seo:check", async () => {

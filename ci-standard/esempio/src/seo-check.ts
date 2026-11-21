@@ -3,7 +3,7 @@ import path from 'node:path';
 
 type Rule = readonly [RegExp, string];
 
-export interface outcome {
+export interface Outcome {
     readonly code: number;
     readonly message: string;
 }
@@ -49,10 +49,10 @@ export const check = (html: string): string[] => {
  * Check a page file and describe the result.
  * @param {string} argument Page path.
  * @param {string} base Base directory.
- * @returns {Promise<outcome>} Exit code and message.
+ * @returns {Promise<Outcome>} Exit code and message.
  */
-export const run = (argument: string, base: string = process.cwd()): Promise<outcome> =>
-    readFile(safePath(argument, base), 'utf8').then((html: string): outcome => {
+export const run = (argument: string, base: string = process.cwd()): Promise<Outcome> =>
+    readFile(safePath(argument, base), 'utf8').then((html: string): Outcome => {
         const errors: string[] = check(html);
         return errors.length === 0
             ? {'code': 0, 'message': 'seo:check ok'}

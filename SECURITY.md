@@ -25,7 +25,8 @@ rete e va lasciato invariato per poter intercettare anche i link HTTP.
 
 ## Messaggi del controllo SEO
 
-I messaggi di `RULES` sono testo semplice e non contengono markup. Prima di
+Le regole di controllo (`RULES`, insieme di pattern e messaggi associati) sono
+testo semplice e non contengono markup. Prima di
 essere restituiti al chiamante passano da `escapeHtml`, che codifica `& < > " '`
 in tutte le occorrenze: i risultati possono così essere mostrati in una pagina
 senza interpretare i tag. Le dipendenze di sviluppo sono bloccate a versioni

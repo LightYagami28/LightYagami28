@@ -1,15 +1,21 @@
-import {copyFile, mkdir} from 'node:fs/promises';
-import path from 'node:path';
+"use strict";
 
-/**
- * Copy the example page into dist and return its relative path.
- * @param {string} root Project directory.
- * @returns {Promise<string>} Relative path of the copied page.
- */
-export const build = (root: string = process.cwd()): Promise<string> => {
-    const dist: string = path.join(root, 'dist');
-    const page: string = path.join('dist', 'index.html');
-    return mkdir(dist, {'recursive': true})
-        .then(() => copyFile(path.join(root, 'src', 'index.html'), path.join(root, page)))
-        .then(() => page);
+import { copyFile, mkdir } from "node:fs/promises";
+import path from "node:path";
+
+// Copia la pagina di esempio in dist e ne restituisce il percorso relativo.
+export var build: (root?: string) => Promise<string> = async (
+  root: string = process.cwd(),
+): Promise<string> => {
+
+  var distribution: string = path.join(root, "dist");
+  var page: string = path.join("dist", "index.html");
+  await mkdir(distribution, { recursive: true });
+  await copyFile(
+    path.join(root, "src", "index.html"),
+    path.join(root, page),
+  );
+  return page;
 };
+
+export default build;

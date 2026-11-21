@@ -1,83 +1,77 @@
-import {readFile} from 'node:fs/promises';
-import path from 'node:path';
+"use strict";
 
-type Rule = readonly [RegExp, string];
+import path from "node:path";
+import { readFile } from "node:fs/promises";
 
-export interface Outcome {
-    readonly code: number;
-    readonly message: string;
+// Simboli con significato speciale in un contesto HTML.
+var htmlEntities: ReadonlyMap<string, string> = new Map([
+  ["&", "&amp;"],
+  ["<", "&lt;"],
+  [">", "&gt;"],
+  ['"', "&quot;"],
+  ["'", "&#39;"]
+]);
+
+var rules: readonly (readonly [RegExp, string])[] = [
+  [/<html[^>]*\blang="[^"]+"/iu, "manca lang su tag html"],
+  [/<title>[^<]{10,70}<\/title>/iu, "title assente o lunghezza fuori da 10-70"],
+  [
+    /<meta\s+name="description"\s+content="[^"]{50,160}"/iu,
+    "meta description assente o lunghezza fuori da 50-160"
+  ],
+  [/<link\s+rel="canonical"\s+href="https?:\/\/[^"]+"/iu, "manca il link canonical"]
+];
+
+interface outcome {
+  readonly "code": number;
+  readonly "message": string;
 }
 
-/** Caratteri con significato speciale in un contesto HTML. */
-const HTML_ENTITIES: Readonly<Record<string, string>> = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#39;',
+var messages: Readonly<Record<string, string>> = {
+  "h1": "serve esattamente un h1",
+  "ok": "seo:check ok",
+  "outside": "percorso fuori dalla cartella di lavoro"
 };
 
-/**
- * Codifica i caratteri speciali HTML di un valore destinato a un contesto HTML.
- * La sostituzione è globale: lasciarne anche uno solo indietro consentirebbe
- * di aggirare la codifica.
- * @param {string} value Valore da codificare.
- * @returns {string} Valore codificato.
- */
-export const escapeHtml = (value: string): string =>
-    value.replace(/[&<>"']/gu, (character: string): string => HTML_ENTITIES[character] ?? character);
+var escapeHtml: (value: string) => string = (value: string): string =>
+  value.replaceAll(/[&<>"']/gu, (character: string): string =>
+    htmlEntities.get(character) ?? character);
 
-/**
- * I messaggi sono testo semplice: non contengono markup, così non possono
- * essere interpretati come HTML quando vengono restituiti al chiamante.
- */
-const RULES: readonly Rule[] = [
-    [/<html[^>]*\blang="[^"]+"/iu, 'manca lang su tag html'],
-    [/<title>[^<]{10,70}<\/title>/iu, 'title assente o lunghezza fuori da 10-70'],
-    [
-        /<meta\s+name="description"\s+content="[^"]{50,160}"/iu,
-        'meta description assente o lunghezza fuori da 50-160',
-    ],
-    [/<link\s+rel="canonical"\s+href="https?:\/\/[^"]+"/iu, 'manca il link canonical'],
-];
-const EXACT_HEADINGS = 1;
-
-/**
- * Resolve a path and refuse the ones outside the base directory.
- * @param {string} argument Path requested by the caller.
- * @param {string} base Allowed base directory.
- * @returns {string} Absolute path inside the base directory.
- */
-export const safePath = (argument: string, base: string = process.cwd()): string => {
-    const resolved: string = path.resolve(base, argument);
-    const relative: string = path.relative(base, resolved);
-    if (relative.startsWith('..') || path.isAbsolute(relative)) {
-        throw new Error('percorso fuori dalla cartella di lavoro');
-    }
-    return resolved;
+var safePath: (argument: string, base?: string) => string = (
+  argument: string,
+  base: string = process.cwd(),
+): string => {
+  var resolved: string = path.resolve(base, argument),
+    relative: string = path.relative(base, resolved);
+  if (relative.startsWith("..") || path.isAbsolute(relative)) {
+    throw new Error(messages.outside);
+  }
+  return resolved;
 };
 
-/**
- * Check the SEO rules on a page.
- * @param {string} page Page source.
- * @returns {string[]} Messages of the failed rules.
- */
-export const check = (page: string): string[] => {
-    const errors: string[] = RULES.filter(([rule]) => !rule.test(page)).map(([, message]) => message);
-    const headings: RegExpMatchArray | [] = page.match(/<h1[\s>]/giu) ?? [];
-    return headings.length === EXACT_HEADINGS ? errors : [...errors, 'serve esattamente un h1'];
+var check: (page: string) => string[] = (page: string): string[] => {
+  var exactHeadings: number = 1,
+    errors: string[] = rules.filter(([rule]) => !rule.test(page)).map(([, text]) => text),
+    headings: RegExpMatchArray | [] = page.match(/<h1[\s>]/giu) ?? [];
+  if (headings.length !== exactHeadings) {
+    errors.push(messages.h1);
+  }
+  return errors;
 };
 
-/**
- * Check a page file and describe the result.
- * @param {string} argument Page path.
- * @param {string} base Base directory.
- * @returns {Promise<Outcome>} Exit code and message.
- */
-export const run = (argument: string, base: string = process.cwd()): Promise<Outcome> =>
-    readFile(safePath(argument, base), 'utf8').then((page: string): Outcome => {
-        const errors: string[] = check(page);
-        return errors.length === 0
-            ? {'code': 0, 'message': 'seo:check ok'}
-            : {'code': 1, 'message': errors.map(escapeHtml).join('\n')};
-    });
+var run: (argument: string, base?: string) => Promise<outcome> = async (
+  argument: string,
+  base: string = process.cwd(),
+): Promise<outcome> => {
+  var page: string = await readFile(safePath(argument, base), "utf8"),
+    errors: string[] = check(page),
+    zero: number = 0,
+    one: number = 1;
+  if (errors.length === zero) {
+    return { "code": zero, "message": messages.ok };
+  }
+  return { "code": one, "message": errors.map(escapeHtml).join("\n") };
+};
+
+export { check, escapeHtml, run, safePath };
+export type { outcome };

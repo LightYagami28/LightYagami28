@@ -1,7 +1,7 @@
 # Glossario
 
 | Termine | Significato |
-|---|---|
+| --- | --- |
 | Workflow riusabile | Workflow GitHub Actions con trigger `workflow_call`, richiamato da altri repository. |
 | SHA fissato | Riferimento a un commit esatto al posto di un tag, per evitare modifiche a sorpresa. |
 | Lighthouse CI | Misura prestazioni, accessibilità e SEO di pagine statiche. |

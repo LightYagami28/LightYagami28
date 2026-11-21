@@ -1,10 +1,11 @@
 # Avvisi sulle dipendenze di terze parti
 
-Componenti richiamati dai workflow (versioni lette dai file, vedi [SPEC.md](SPEC.md)). Non sono
+Componenti richiamati dai workflow (versioni lette dai file, vedi
+[SPEC.md](SPEC.md)). Non sono
 ridistribuiti con questo repository: sono scaricati a ogni esecuzione.
 
 | Componente | Versione | Licenza |
-|---|---|---|
+| --- | --- | --- |
 | actions/checkout | v7.0.1 | MIT |
 | actions/setup-node | v7.1.0 | MIT |
 | actions/upload-artifact | v7.0.2 | MIT |

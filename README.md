@@ -1,5 +1,8 @@
 # Light Yagami
-![CI](https://github.com/LightYagami28/LightYagami28/actions/workflows/ci-standard-prova.yml/badge.svg) ![License](https://img.shields.io/github/license/LightYagami28/LightYagami28) ![Stars](https://img.shields.io/github/stars/LightYagami28/LightYagami28)
+
+![CI](https://github.com/LightYagami28/LightYagami28/actions/workflows/ci-standard-prova.yml/badge.svg)
+![License](https://img.shields.io/github/license/LightYagami28/LightYagami28)
+![Stars](https://img.shields.io/github/stars/LightYagami28/LightYagami28)
 
 Sviluppatore italiano. Costruisco bot, strumenti di automazione e utility
 di sicurezza, e rimetto in sesto codice datato mantenendolo aggiornato.
@@ -7,7 +10,8 @@ di sicurezza, e rimetto in sesto codice datato mantenendolo aggiornato.
 ## Aree di lavoro
 
 - **Bot**: Telegram e Discord, in Python, PHP e JavaScript.
-- **Automazione**: script e servizi per attività ripetitive di server e progetti.
+- **Automazione**: script e servizi per attività ripetitive di server e
+progetti.
 - **Sicurezza**: ricerca su minacce e vulnerabilità, analisi forense,
   aggiornamento di dipendenze vulnerabili.
 - **Ingegneria inversa**: firmware, tabelle ACPI e hardware.
@@ -49,7 +53,8 @@ Per collaborazioni apri una issue o una discussione sui repository GitHub.
 
 ## Licenza
 
-Tutti i diritti riservati: copia, modifica e ridistribuzione richiedono il permesso scritto del titolare
+Tutti i diritti riservati: copia, modifica e ridistribuzione richiedono il
+permesso scritto del titolare
 (vedi [LICENSE](LICENSE)).
 
 ## Documentazione

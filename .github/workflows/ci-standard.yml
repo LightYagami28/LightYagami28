@@ -68,11 +68,11 @@ jobs:
         run: npm run build --if-present
       - name: Controllo SEO
         run: npm run seo:check --if-present
-      - name: Audit dipendenze di produzione
+      - name: Audit dipendenze
         if: inputs.audit-level != ''
         env:
           LIVELLO: ${{ inputs.audit-level }}
-        run: npm audit --omit=dev --audit-level="$LIVELLO"
+        run: npm audit --audit-level="$LIVELLO"
       - name: Lighthouse CI
         if: inputs.run-lighthouse
         env:

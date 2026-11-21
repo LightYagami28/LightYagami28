@@ -8,7 +8,7 @@ const htmlEntities: ReadonlyMap<string, string> = new Map([
   ["&", "&amp;"],
   ["<", "&lt;"],
   [">", "&gt;"],
-  ['"', "&quot;"],
+  ["\"", "&quot;"],
   ["'", "&#39;"]
 ]);
 
@@ -33,40 +33,34 @@ const messages: Readonly<Record<string, string>> = {
   "outside": "percorso fuori dalla cartella di lavoro"
 };
 
-const escapeHtml: (value: string) => string = (value: string): string =>
+const escapeHtml = (value: string): string =>
   value.replaceAll(/[&<>"']/gu, (character: string): string =>
     htmlEntities.get(character) ?? character);
 
-const safePath: (argument: string, base?: string) => string = (
-  argument: string,
-  base: string = process.cwd(),
-): string => {
-  const resolved: string = path.resolve(base, argument),
-    relative: string = path.relative(base, resolved);
+const safePath = (argument: string, base: string = process.cwd()): string => {
+  const resolved: string = path.resolve(base, argument);
+  const relative: string = path.relative(base, resolved);
   if (relative.startsWith("..") || path.isAbsolute(relative)) {
     throw new Error(messages.outside);
   }
   return resolved;
 };
 
-const check: (page: string) => string[] = (page: string): string[] => {
-  const exactHeadings: number = 1,
-    errors: string[] = rules.filter(([rule]) => !rule.test(page)).map(([, text]) => text),
-    headings: RegExpMatchArray | [] = page.match(/<h1[\s>]/giu) ?? [];
+const check = (page: string): string[] => {
+  const exactHeadings: number = 1;
+  const errors: string[] = rules.filter(([rule]) => !rule.test(page)).map(([, text]) => text);
+  const headings: RegExpMatchArray | [] = page.match(/<h1[\s>]/giu) ?? [];
   if (headings.length !== exactHeadings) {
     errors.push(messages.h1);
   }
   return errors;
 };
 
-const run: (argument: string, base?: string) => Promise<outcome> = async (
-  argument: string,
-  base: string = process.cwd(),
-): Promise<outcome> => {
-  const page: string = await readFile(safePath(argument, base), "utf8"),
-    errors: string[] = check(page),
-    zero: number = 0,
-    one: number = 1;
+const run = async (argument: string, base: string = process.cwd()): Promise<outcome> => {
+  const page: string = await readFile(safePath(argument, base), "utf8");
+  const errors: string[] = check(page);
+  const zero: number = 0;
+  const one: number = 1;
   if (errors.length === zero) {
     return { "code": zero, "message": messages.ok };
   }

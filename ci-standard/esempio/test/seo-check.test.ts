@@ -21,17 +21,17 @@ test("la pagina di esempio passa il controllo SEO", (): Promise<void> =>
     assert.deepEqual(check(page), []);
   }));
 
-test("una pagina senza title viene segnalata", (): void => {
-  const markup: string = ["<html lang=\"it\">", "<h1>x</h1>", "</html>"].join("");
-  assert.ok(check(markup).length > zero);
-});
+test("una pagina senza title viene segnalata", (): Promise<void> =>
+  fs.readFile("test/fixtures/senza-title.html", "utf8").then((page: string): void => {
+    assert.ok(check(page).length > zero);
+  }));
 
 test("una pagina senza h1 viene segnalata", (): void => {
   assert.ok(check("<html></html>").includes("serve esattamente un h1"));
 });
 
 test("escapeHtml codifica tutti i caratteri speciali", (): void => {
-  assert.equal(escapeHtml(`&<>"'`), "&amp;&lt;&gt;&quot;&#39;");
+  assert.equal(escapeHtml("&<>\"'"), "&amp;&lt;&gt;&quot;&#39;");
   assert.equal(escapeHtml("a & b & c < x > y \"z'"), "a &amp; b &amp; c &lt; x &gt; y &quot;z&#39;");
 });
 
@@ -60,7 +60,7 @@ test("esegui segnala gli errori con code 1", (): Promise<void> =>
 test("la riga di comando esegue build e seo:check", (): Promise<void> => {
   const precedente: string = process.cwd();
   const righe: string[] = [];
-  const out: { error: (line: string) => void; log: (line: string) => void } = {
+  const out: Pick<Console, "error" | "log"> = {
     "error": (riga: string): void => {
       righe.push(riga);
     },
@@ -104,7 +104,7 @@ test("start imposta il codice di uscita del processo", (): Promise<void> => {
 test("senza argomento il controllo SEO fallisce", (): Promise<void> => {
   const precedente: string = process.cwd();
   const righe: string[] = [];
-  const out: { error: (line: string) => void; log: (line: string) => void } = {
+  const out: Pick<Console, "error" | "log"> = {
     "error": (riga: string): void => {
       righe.push(riga);
     },

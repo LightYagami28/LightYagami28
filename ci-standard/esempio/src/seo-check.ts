@@ -8,8 +8,31 @@ export interface Outcome {
     readonly message: string;
 }
 
+/** Caratteri con significato speciale in un contesto HTML. */
+const HTML_ENTITIES: Readonly<Record<string, string>> = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+};
+
+/**
+ * Codifica i caratteri speciali HTML di un valore destinato a un contesto HTML.
+ * La sostituzione è globale: lasciarne anche uno solo indietro consentirebbe
+ * di aggirare la codifica.
+ * @param {string} value Valore da codificare.
+ * @returns {string} Valore codificato.
+ */
+export const escapeHtml = (value: string): string =>
+    value.replace(/[&<>"']/gu, (character: string): string => HTML_ENTITIES[character] ?? character);
+
+/**
+ * I messaggi sono testo semplice: non contengono markup, così non possono
+ * essere interpretati come HTML quando vengono restituiti al chiamante.
+ */
 const RULES: readonly Rule[] = [
-    [/<html[^>]*\blang="[^"]+"/iu, 'manca lang su <html>'],
+    [/<html[^>]*\blang="[^"]+"/iu, 'manca lang su tag html'],
     [/<title>[^<]{10,70}<\/title>/iu, 'title assente o lunghezza fuori da 10-70'],
     [
         /<meta\s+name="description"\s+content="[^"]{50,160}"/iu,
@@ -36,12 +59,12 @@ export const safePath = (argument: string, base: string = process.cwd()): string
 
 /**
  * Check the SEO rules on a page.
- * @param {string} html Page source.
+ * @param {string} page Page source.
  * @returns {string[]} Messages of the failed rules.
  */
-export const check = (html: string): string[] => {
-    const errors: string[] = RULES.filter(([rule]) => !rule.test(html)).map(([, message]) => message);
-    const headings: RegExpMatchArray | [] = html.match(/<h1[\s>]/giu) ?? [];
+export const check = (page: string): string[] => {
+    const errors: string[] = RULES.filter(([rule]) => !rule.test(page)).map(([, message]) => message);
+    const headings: RegExpMatchArray | [] = page.match(/<h1[\s>]/giu) ?? [];
     return headings.length === EXACT_HEADINGS ? errors : [...errors, 'serve esattamente un h1'];
 };
 
@@ -52,9 +75,9 @@ export const check = (html: string): string[] => {
  * @returns {Promise<Outcome>} Exit code and message.
  */
 export const run = (argument: string, base: string = process.cwd()): Promise<Outcome> =>
-    readFile(safePath(argument, base), 'utf8').then((html: string): Outcome => {
-        const errors: string[] = check(html);
+    readFile(safePath(argument, base), 'utf8').then((page: string): Outcome => {
+        const errors: string[] = check(page);
         return errors.length === 0
             ? {'code': 0, 'message': 'seo:check ok'}
-            : {'code': 1, 'message': errors.join('\n')};
+            : {'code': 1, 'message': errors.map(escapeHtml).join('\n')};
     });

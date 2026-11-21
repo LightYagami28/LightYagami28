@@ -1,25 +1,17 @@
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
-import os from "node:os";
 import path from "node:path";
 import { test } from "node:test";
-import { fileURLToPath } from "node:url";
 
 import {build} from "../src/build.ts";
 import {main, start} from "../src/cli.ts";
-import {check, run, safePath} from "../src/seo-check.ts";
+import {check, escapeHtml, run, safePath} from "../src/seo-check.ts";
 
-const PAGINA: string = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "src", "index.html");
-
-async function cartella(): Promise<string> {
-  const radice: string = await fs.mkdtemp(path.join(os.tmpdir(), "esempio-"));
-  await fs.mkdir(path.join(radice, "src"));
-  await fs.copyFile(PAGINA, path.join(radice, "src", "index.html"));
-  return radice;
-}
+// Le fixture sono file letterali nel repo: i test non costruiscono percorsi
+// a partire da input dell'utente né da directory temporanee.
 
 test("la pagina di esempio passa il controllo SEO", async () => {
-  assert.deepEqual(check(await fs.readFile(PAGINA, "utf8")), []);
+  assert.deepEqual(check(await fs.readFile("src/index.html", "utf8")), []);
 });
 
 test("una pagina senza title viene segnalata", () => {
@@ -30,6 +22,11 @@ test("una pagina senza h1 viene segnalata", () => {
   assert.ok(check("<html></html>").includes("serve esattamente un h1"));
 });
 
+test("escapeHtml codifica tutti i caratteri speciali", () => {
+  assert.equal(escapeHtml(`&<>"'`), "&amp;&lt;&gt;&quot;&#39;");
+  assert.equal(escapeHtml("a & b & c < x > y \"z'"), "a &amp; b &amp; c &lt; x &gt; y &quot;z&#39;");
+});
+
 test("un percorso fuori dalla cartella di lavoro viene rifiutato", () => {
   assert.throws(() => safePath("../segreto.html", "/lavoro"));
   assert.throws(() => safePath("/etc/passwd", "/lavoro"));
@@ -37,32 +34,27 @@ test("un percorso fuori dalla cartella di lavoro viene rifiutato", () => {
 });
 
 test("build copia la pagina in dist e il controllo la accetta", async () => {
-  const radice: string = await cartella();
-  assert.equal(await build(radice), path.join("dist", "index.html"));
-  assert.deepEqual(await run(path.join("dist", "index.html"), radice), {
+  assert.equal(await build("test/fixtures"), path.join("dist", "index.html"));
+  assert.deepEqual(await run(path.join("dist", "index.html"), "test/fixtures"), {
     code: 0,
     message: "seo:check ok",
   });
 });
 
 test("esegui segnala gli errori con code 1", async () => {
-  const radice: string = await cartella();
-  await fs.writeFile(path.join(radice, "vuota.html"), "<html></html>");
-  const {code, message} = await run("vuota.html", radice);
+  const {code, message} = await run("vuota.html", "test/fixtures");
   assert.equal(code, 1);
   assert.match(message, /manca lang/u);
 });
 
 test("la riga di comando esegue build e seo:check", async () => {
-  const radice: string = await cartella();
   const precedente: string = process.cwd();
   const righe: string[] = [];
   const out = { log: (riga: string) => righe.push(riga), error: (riga: string) => righe.push(riga) };
-  process.chdir(radice);
+  process.chdir("test/fixtures");
   try {
     assert.equal(await main(["build"], out), 0);
     assert.equal(await main(["seo", path.join("dist", "index.html")], out), 0);
-    await fs.writeFile("vuota.html", "<html></html>");
     assert.equal(await main(["seo", "vuota.html"], out), 1);
   } finally {
     process.chdir(precedente);
@@ -72,9 +64,8 @@ test("la riga di comando esegue build e seo:check", async () => {
 });
 
 test("start imposta il codice di uscita del processo", async () => {
-  const radice: string = await cartella();
   const precedente: string = process.cwd();
-  process.chdir(radice);
+  process.chdir("test/fixtures");
   try {
     await start(["build"]);
     assert.equal(process.exitCode, 0);
@@ -85,9 +76,8 @@ test("start imposta il codice di uscita del processo", async () => {
 });
 
 test("senza argomento il controllo SEO fallisce leggendo la cartella di lavoro", async () => {
-  const radice: string = await cartella();
   const precedente: string = process.cwd();
-  process.chdir(radice);
+  process.chdir("test/fixtures");
   try {
     await assert.rejects(main(["seo"], { log: () => undefined, error: () => undefined }));
   } finally {

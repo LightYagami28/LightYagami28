@@ -1,7 +1,7 @@
 import {build} from './build.ts';
 import {run as runCheck} from './seo-check.ts';
 
-export interface output {
+export interface Output {
     readonly log: (line: string) => void;
     readonly error: (line: string) => void;
 }
@@ -13,10 +13,10 @@ const SKIP = 1;
 /**
  * Run a command line: `build` or `seo <page>`.
  * @param {readonly string[]} args Arguments without the interpreter.
- * @param {output} out Where lines are written.
+ * @param {Output} out Where lines are written.
  * @returns {Promise<number>} Process exit code.
  */
-export const main = (args: readonly string[], out: output = console): Promise<number> => {
+export const main = (args: readonly string[], out: Output = console): Promise<number> => {
     if (args[FIRST] === 'build') {
         return build().then((page: string): number => {
             out.log(`build: ${page}`);

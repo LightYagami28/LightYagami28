@@ -6,7 +6,7 @@ aggiornato: 2026-11-21
 # Codacy: stato analisi e falsi positivi
 
 Data verifica: 2026-11-21. Analisi Codacy dell'organizzazione `gh/LightYagami28`,
-repository `LightYagami28`, ramo `main` (commit `445084b`).
+repository `LightYagami28`, ramo `main` (ultimo commit della verifica).
 
 ## Esito
 

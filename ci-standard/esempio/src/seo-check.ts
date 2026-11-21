@@ -22,7 +22,7 @@ const rules: readonly (readonly [RegExp, string])[] = [
   [/<link\s+rel="canonical"\s+href="https?:\/\/[^"]+"/iu, "manca il link canonical"]
 ];
 
-interface outcome {
+interface Outcome {
   readonly "code": number;
   readonly "message": string;
 }
@@ -56,7 +56,7 @@ const check = (page: string): string[] => {
   return errors;
 };
 
-const run = async (argument: string, base: string = process.cwd()): Promise<outcome> => {
+const run = async (argument: string, base: string = process.cwd()): Promise<Outcome> => {
   const page: string = await readFile(safePath(argument, base), "utf8");
   const errors: string[] = check(page);
   const zero: number = 0;
@@ -68,4 +68,4 @@ const run = async (argument: string, base: string = process.cwd()): Promise<outc
 };
 
 export { check, escapeHtml, run, safePath };
-export type { outcome };
+export type { Outcome };

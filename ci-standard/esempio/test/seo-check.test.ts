@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import path from "node:path";
 
-import type { outcome } from "../src/seo-check.ts";
+import type { Outcome } from "../src/seo-check.ts";
 import { check, escapeHtml, run, safePath } from "../src/seo-check.ts";
 import { main, start } from "../src/cli.ts";
 import build from "../src/build.ts";
@@ -22,7 +22,7 @@ test("la pagina di esempio passa il controllo SEO", (): Promise<void> =>
   }));
 
 test("una pagina senza title viene segnalata", (): Promise<void> =>
-  fs.readFile("test/fixtures/senza-title.html", "utf8").then((page: string): void => {
+  fs.readFile("test/fixtures/senza-title.txt", "utf8").then((page: string): void => {
     assert.ok(check(page).length > zero);
   }));
 
@@ -47,12 +47,12 @@ test("build copia la pagina in dist", (): Promise<void> =>
   }));
 
 test("il controllo SEO accetta la pagina generata", (): Promise<void> =>
-  run(path.join("dist", "index.html"), "test/fixtures").then((result: outcome): void => {
+  run(path.join("dist", "index.html"), "test/fixtures").then((result: Outcome): void => {
     assert.deepEqual(result, { "code": zero, "message": "seo:check ok" });
   }));
 
 test("esegui segnala gli errori con code 1", (): Promise<void> =>
-  run("vuota.html", "test/fixtures").then((result: outcome): void => {
+  run("vuota.html", "test/fixtures").then((result: Outcome): void => {
     assert.equal(result.code, one);
     assert.match(result.message, /meta description/u);
   }));

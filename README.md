@@ -1,4 +1,5 @@
 # Light Yagami
+![CI](https://github.com/LightYagami28/LightYagami28/actions/workflows/ci-standard-prova.yml/badge.svg) ![License](https://img.shields.io/github/license/LightYagami28/LightYagami28) ![Stars](https://img.shields.io/github/stars/LightYagami28/LightYagami28)
 
 Sviluppatore italiano. Costruisco bot, strumenti di automazione e utility
 di sicurezza, e rimetto in sesto codice datato mantenendolo aggiornato.

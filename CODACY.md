@@ -28,8 +28,9 @@ Le 4 issue residue sono falsi positivi dimostrati, descritti sotto. Nessuna di e
 ### `ESLint_jsdoc_require-file-overview` — `ci-standard/esempio/package.json` e `package-lock.json`
 
 Il rule JSDoc `require-file-overview` richiede un commento `/** @file ... */` all'inizio
-del file. I due file sono manifest JSON secondo gli standard npm: la sintassi JSON non
-ammette commenti, quindi aggiungere un blocco JSDoc li renderebbe non validi e
+del file. I due file sono manifest JSON secondo gli standard npm: la sintassi
+JSON non ammette commenti, quindi aggiungere un blocco JSDoc li renderebbe non
+validi e
 `npm ci` fallirebbe. Il rule viene applicato a file JSON per un errore di
 configurazione dello scanner, non per un difetto del repository.
 

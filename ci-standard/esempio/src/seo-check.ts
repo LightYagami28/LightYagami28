@@ -4,7 +4,7 @@ import path from "node:path";
 import { readFile } from "node:fs/promises";
 
 // Simboli con significato speciale in un contesto HTML.
-var htmlEntities: ReadonlyMap<string, string> = new Map([
+const htmlEntities: ReadonlyMap<string, string> = new Map([
   ["&", "&amp;"],
   ["<", "&lt;"],
   [">", "&gt;"],
@@ -12,7 +12,7 @@ var htmlEntities: ReadonlyMap<string, string> = new Map([
   ["'", "&#39;"]
 ]);
 
-var rules: readonly (readonly [RegExp, string])[] = [
+const rules: readonly (readonly [RegExp, string])[] = [
   [/<html[^>]*\blang="[^"]+"/iu, "manca lang su tag html"],
   [/<title>[^<]{10,70}<\/title>/iu, "title assente o lunghezza fuori da 10-70"],
   [
@@ -27,21 +27,21 @@ interface outcome {
   readonly "message": string;
 }
 
-var messages: Readonly<Record<string, string>> = {
+const messages: Readonly<Record<string, string>> = {
   "h1": "serve esattamente un h1",
   "ok": "seo:check ok",
   "outside": "percorso fuori dalla cartella di lavoro"
 };
 
-var escapeHtml: (value: string) => string = (value: string): string =>
+const escapeHtml: (value: string) => string = (value: string): string =>
   value.replaceAll(/[&<>"']/gu, (character: string): string =>
     htmlEntities.get(character) ?? character);
 
-var safePath: (argument: string, base?: string) => string = (
+const safePath: (argument: string, base?: string) => string = (
   argument: string,
   base: string = process.cwd(),
 ): string => {
-  var resolved: string = path.resolve(base, argument),
+  const resolved: string = path.resolve(base, argument),
     relative: string = path.relative(base, resolved);
   if (relative.startsWith("..") || path.isAbsolute(relative)) {
     throw new Error(messages.outside);
@@ -49,8 +49,8 @@ var safePath: (argument: string, base?: string) => string = (
   return resolved;
 };
 
-var check: (page: string) => string[] = (page: string): string[] => {
-  var exactHeadings: number = 1,
+const check: (page: string) => string[] = (page: string): string[] => {
+  const exactHeadings: number = 1,
     errors: string[] = rules.filter(([rule]) => !rule.test(page)).map(([, text]) => text),
     headings: RegExpMatchArray | [] = page.match(/<h1[\s>]/giu) ?? [];
   if (headings.length !== exactHeadings) {
@@ -59,11 +59,11 @@ var check: (page: string) => string[] = (page: string): string[] => {
   return errors;
 };
 
-var run: (argument: string, base?: string) => Promise<outcome> = async (
+const run: (argument: string, base?: string) => Promise<outcome> = async (
   argument: string,
   base: string = process.cwd(),
 ): Promise<outcome> => {
-  var page: string = await readFile(safePath(argument, base), "utf8"),
+  const page: string = await readFile(safePath(argument, base), "utf8"),
     errors: string[] = check(page),
     zero: number = 0,
     one: number = 1;

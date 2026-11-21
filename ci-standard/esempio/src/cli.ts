@@ -8,19 +8,19 @@ interface output {
   readonly "log": (line: string) => void;
 }
 
-export var main: (args: readonly string[], out?: output) => Promise<number> = async (
+export const main: (args: readonly string[], out?: output) => Promise<number> = async (
   args: readonly string[],
   out: output = console,
 ): Promise<number> => {
 
-  var first: number = 0;
-  var second: number = 1;
+  const first: number = 0;
+  const second: number = 1;
   if (args[first] === "build") {
-    var page: string = await build();
+    const page: string = await build();
     out.log(`build: ${page}`);
     return first;
   }
-  var { code, message } = await runCheck(args[second] ?? "");
+  const { code, message } = await runCheck(args[second] ?? "");
   if (code === first) {
     out.log(message);
   } else {
@@ -29,11 +29,11 @@ export var main: (args: readonly string[], out?: output) => Promise<number> = as
   return code;
 };
 
-export var start: (argv?: readonly string[]) => Promise<void> = async (
+export const start: (argv?: readonly string[]) => Promise<void> = async (
   argv: readonly string[] = process.argv.slice(1),
 ): Promise<void> => {
 
-  var code: number = await main(argv);
+  const code: number = await main(argv);
   process.exitCode = code;
 };
 

@@ -13,8 +13,8 @@ import build from "../src/build.ts";
 // Le fixture sono file letterali nel repo: nessun percorso deriva da input
 // Dell'utente o da directory temporanee.
 
-var zero: number = 0;
-var one: number = 1;
+const zero: number = 0;
+const one: number = 1;
 
 test("la pagina di esempio passa il controllo SEO", (): Promise<void> =>
   fs.readFile("src/index.html", "utf8").then((page: string): void => {
@@ -22,7 +22,7 @@ test("la pagina di esempio passa il controllo SEO", (): Promise<void> =>
   }));
 
 test("una pagina senza title viene segnalata", (): void => {
-  var markup: string = ["<html lang=\"it\">", "<h1>x</h1>", "</html>"].join("");
+  const markup: string = ["<html lang=\"it\">", "<h1>x</h1>", "</html>"].join("");
   assert.ok(check(markup).length > zero);
 });
 
@@ -58,9 +58,9 @@ test("esegui segnala gli errori con code 1", (): Promise<void> =>
   }));
 
 test("la riga di comando esegue build e seo:check", (): Promise<void> => {
-  var precedente: string = process.cwd();
-  var righe: string[] = [];
-  var out: { error: (line: string) => void; log: (line: string) => void } = {
+  const precedente: string = process.cwd();
+  const righe: string[] = [];
+  const out: { error: (line: string) => void; log: (line: string) => void } = {
     "error": (riga: string): void => {
       righe.push(riga);
     },
@@ -89,7 +89,7 @@ test("la riga di comando esegue build e seo:check", (): Promise<void> => {
 });
 
 test("start imposta il codice di uscita del processo", (): Promise<void> => {
-  var precedente: string = process.cwd();
+  const precedente: string = process.cwd();
   process.chdir("test/fixtures");
   return start(["build"])
     .then((): void => {
@@ -102,9 +102,9 @@ test("start imposta il codice di uscita del processo", (): Promise<void> => {
 });
 
 test("senza argomento il controllo SEO fallisce", (): Promise<void> => {
-  var precedente: string = process.cwd();
-  var righe: string[] = [];
-  var out: { error: (line: string) => void; log: (line: string) => void } = {
+  const precedente: string = process.cwd();
+  const righe: string[] = [];
+  const out: { error: (line: string) => void; log: (line: string) => void } = {
     "error": (riga: string): void => {
       righe.push(riga);
     },

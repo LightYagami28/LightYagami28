@@ -1,0 +1,20 @@
+{
+  "root": true,
+  "env": {
+    "node": true,
+    "es2023": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2023,
+    "sourceType": "module"
+  },
+  "rules": {
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"],
+    "eqeqeq": ["error", "always"],
+    "no-unused-vars": "error",
+    "no-undef": "error",
+    "no-magic-numbers": ["error", { "ignore": [0, 1] }]
+  }
+}

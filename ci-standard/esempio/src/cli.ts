@@ -5,7 +5,7 @@ import { run as runCheck } from "./seo-check.ts";
 
 export const main = async (
   args: readonly string[],
-  out: { error: (riga: string) => void; log: (riga: string) => void } = console,
+  out: Pick<typeof console, "error" | "log"> = console,
 ): Promise<number> => {
   const first: number = 0;
   const second: number = 1;

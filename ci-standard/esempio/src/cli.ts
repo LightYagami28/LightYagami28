@@ -3,14 +3,9 @@
 import build from "./build.ts";
 import { run as runCheck } from "./seo-check.ts";
 
-export interface Output {
-  error: (riga: string) => void;
-  log: (riga: string) => void;
-}
-
 export const main = async (
   args: readonly string[],
-  out: Output = console,
+  out: { error: (riga: string) => void; log: (riga: string) => void } = console,
 ): Promise<number> => {
   const first: number = 0;
   const second: number = 1;

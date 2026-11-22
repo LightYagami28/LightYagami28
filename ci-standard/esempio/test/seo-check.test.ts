@@ -8,7 +8,6 @@ import path from "node:path";
 import type { Outcome } from "../src/seo-check.ts";
 import { check, escapeHtml, run, safePath } from "../src/seo-check.ts";
 import { main, start } from "../src/cli.ts";
-import type { Output } from "../src/cli.ts";
 import build from "../src/build.ts";
 
 // Le fixture sono file letterali nel repo: nessun percorso deriva da input
@@ -61,7 +60,7 @@ test("esegui segnala gli errori con code 1", (): Promise<void> =>
 test("la riga di comando esegue build e seo:check", (): Promise<void> => {
   const precedente: string = process.cwd();
   const righe: string[] = [];
-  const out: Output = {
+  const out: { error: (riga: string) => void; log: (riga: string) => void } = {
     "error": (riga: string): void => {
       righe.push(riga);
     },
@@ -105,7 +104,7 @@ test("start imposta il codice di uscita del processo", (): Promise<void> => {
 test("senza argomento il controllo SEO fallisce", (): Promise<void> => {
   const precedente: string = process.cwd();
   const righe: string[] = [];
-  const out: Output = {
+  const out: { error: (riga: string) => void; log: (riga: string) => void } = {
     "error": (riga: string): void => {
       righe.push(riga);
     },

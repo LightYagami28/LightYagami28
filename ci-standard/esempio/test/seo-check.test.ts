@@ -60,7 +60,7 @@ test("esegui segnala gli errori con code 1", (): Promise<void> =>
 test("la riga di comando esegue build e seo:check", (): Promise<void> => {
   const precedente: string = process.cwd();
   const righe: string[] = [];
-  const out: Pick<Console, "error" | "log"> = {
+  const out: Pick<typeof console, "error" | "log"> = {
     "error": (riga: string): void => {
       righe.push(riga);
     },
@@ -104,7 +104,7 @@ test("start imposta il codice di uscita del processo", (): Promise<void> => {
 test("senza argomento il controllo SEO fallisce", (): Promise<void> => {
   const precedente: string = process.cwd();
   const righe: string[] = [];
-  const out: Pick<Console, "error" | "log"> = {
+  const out: Pick<typeof console, "error" | "log"> = {
     "error": (riga: string): void => {
       righe.push(riga);
     },

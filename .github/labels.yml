@@ -17,7 +17,7 @@
   color: 0366d6
   description: Aggiornamento o modifica delle dipendenze
 - name: qualità
-  color: 5319e7
+  color: "5319e7"
   description: Qualità del codice, test, analisi statica
 - name: domanda
   color: d876e3

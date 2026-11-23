@@ -14,8 +14,8 @@ ci --ignore-scripts`.
 
 ## `npm audit` blocca la pipeline
 
-Il livello minimo è l'input `audit-level`: correggi la dipendenza o alza il
-livello consapevolmente.
+Non esiste una soglia configurabile: correggi la dipendenza segnalata. Ogni
+advisory fa fallire la pipeline.
 
 ## CodeQL non trova i permessi
 

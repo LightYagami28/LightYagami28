@@ -36,7 +36,7 @@ Gli script npm mancanti vengono saltati (`--if-present`).
 - `npm ci --ignore-scripts` sempre: il build non deve dipendere da script
   di installazione.
 - Strumenti installati con versione fissata e senza script:
-  `@lhci/cli@0.15.1`, `@axe-core/cli@4.14.0`.
+  `@lhci/cli@0.16.1`, `@axe-core/cli@4.14.0`.
 
 ## SHA delle azioni (verificati il 2026-10-31)
 

@@ -14,10 +14,6 @@ name: CI standard
       node-version:
         type: string
         default: "26"
-      audit-level:
-        description: Livello minimo che fa fallire npm audit (low, moderate, high, critical; vuoto = salta)
-        type: string
-        default: high
       run-lighthouse:
         type: boolean
         default: false
@@ -69,16 +65,13 @@ jobs:
       - name: Controllo SEO
         run: npm run seo:check --if-present
       - name: Audit dipendenze
-        if: inputs.audit-level != ''
-        env:
-          LIVELLO: ${{ inputs.audit-level }}
-        run: npm audit --audit-level="$LIVELLO"
+        run: npm audit
       - name: Lighthouse CI
         if: inputs.run-lighthouse
         env:
           CONFIG: ${{ inputs.lighthouse-config }}
         run: |
-          npm install --global --ignore-scripts @lhci/cli@0.15.1
+          npm install --global --ignore-scripts @lhci/cli@0.16.1
           lhci autorun --config="$CONFIG"
       - name: axe
         if: inputs.axe-dir != ''

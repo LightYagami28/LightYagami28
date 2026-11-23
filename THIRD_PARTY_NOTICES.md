@@ -13,7 +13,7 @@ ridistribuiti con questo repository: sono scaricati a ogni esecuzione.
 | github/codeql-action | v4.39.3 | MIT |
 | SonarSource/sonarqube-scan-action | v8.4.1 | LGPL-3.0 |
 | Semgrep (immagine) | 1.183.0 | LGPL-2.1 |
-| @lhci/cli | 0.15.1 | Apache-2.0 |
+| @lhci/cli | 0.16.1 | Apache-2.0 |
 | @axe-core/cli | 4.14.0 | MPL-2.0 |
 
 Il codice di questo repository è proprietario: vedi [LICENSE](LICENSE).

@@ -35,7 +35,7 @@ Versioni lette dai workflow:
 | github/codeql-action (init, analyze) | v4.39.3 | `codeql-standard.yml` |
 | SonarSource/sonarqube-scan-action | v8.4.1 | `sonarcloud.yml` |
 | Semgrep (immagine) | 1.183.0 | `semgrep.yml` |
-| @lhci/cli | 0.15.1 | `ci-standard.yml` |
+| @lhci/cli | 0.16.1 | `ci-standard.yml` |
 | @axe-core/cli | 4.14.0 | `ci-standard.yml` |
 | Node (default dell'input) | 26 | `ci-standard.yml` |
 
@@ -60,7 +60,7 @@ docs/               ci-riusabile.md (guida), index.html, WelcomeGuard/ (pagine s
 
 Flusso. Un repo chiamante ha `.github/workflows/ci.yml` che richiama
 `ci-standard.yml@<SHA>`. Il job `build` esegue `npm ci --ignore-scripts`, lint,
-test, build, `seo:check`, `npm audit --omit=dev`, Lighthouse CI e axe; gli
+test, build, `seo:check`, `npm audit`, Lighthouse CI e axe; gli
 script npm assenti sono saltati (`--if-present`). Il job `dependency-review`
 gira solo sulle PR se abilitato. `codeql-standard.yml` è separato perché
 richiede `security-events: write`. `ci-standard-prova.yml` richiama entrambi in
@@ -76,7 +76,7 @@ default `contents: read`.
    LightYagami28 --visibility public --json name -q '.[].name'` coincide con i
    nomi della tabella.
 2. `ci-standard.yml` accetta gli input documentati in `docs/ci-riusabile.md`:
-   `working-directory`, `node-version`, `audit-level`, `run-lighthouse`,
+   `working-directory`, `node-version`, `run-lighthouse`,
    `lighthouse-config`, `axe-dir`, `axe-paths`, `run-dependency-review`.
    Accettazione: ogni input del YAML compare nella tabella della guida e
    viceversa.

@@ -32,7 +32,6 @@ Gli script npm assenti vengono saltati (`--if-present`).
 | --- | --- | --- |
 | `working-directory` | `.` | Cartella del progetto Node |
 | `node-version` | `26` | Versione di Node |
-| `audit-level` | `high` | Soglia di `npm audit --omit=dev`; vuoto per saltare |
 | `run-lighthouse` | `false` | Esegue Lighthouse CI |
 | `lighthouse-config` | `lighthouserc.json` | Configurazione, relativa a `working-directory` |
 | `axe-dir` | vuoto | Cartella statica da servire e controllare con axe; vuoto per saltare |
@@ -66,7 +65,6 @@ jobs:
     with:
       working-directory: bot
       node-version: "26"
-      audit-level: moderate
 ```
 
 Solo CodeQL su un repo Python, per esempio `bot-lite-downloader` o `TgDesktop-multi-account`:

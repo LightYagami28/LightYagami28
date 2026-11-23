@@ -47,5 +47,5 @@ Comando: `gh api repos/<azione>/commits/<tag> --jq .sha` sui repo ufficiali.
 | actions/checkout | v7.0.1 | 3d3c42e5aac5ba805825da76410c181273ba90b1 |
 | actions/setup-node | v7.1.0 | 949feb2413d6458794dcd2491c4babbbce0c15c1 |
 | actions/upload-artifact | v7.0.2 | cf430e030ddbb5b0abf93d22962f4752f3646cd9 |
-| actions/dependency-review-action | v5.0.0 | a1d282b36b6f3519aa1f3fc636f609c47dddb294 |
+| actions/dependency-review-action | v5.0.1 | bbc44d14a204704ccc493733616cd1e93a0321ec |
 | github/codeql-action (init, analyze) | v4.39.4 | 1bd86f2fdb4b86187fa4059f16f31a3202acc9ea |

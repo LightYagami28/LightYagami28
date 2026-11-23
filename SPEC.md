@@ -31,9 +31,9 @@ Versioni lette dai workflow:
 | actions/checkout | v7.0.1 | tutti i workflow |
 | actions/setup-node | v7.1.0 | `ci-standard.yml` |
 | actions/upload-artifact | v7.0.2 | `ci-standard.yml` |
-| actions/dependency-review-action | v5.0.0 | `ci-standard.yml` |
+| actions/dependency-review-action | v5.0.1 | `ci-standard.yml` |
 | github/codeql-action (init, analyze) | v4.39.4 | `codeql-standard.yml` |
-| SonarSource/sonarqube-scan-action | v8.4.1 | `sonarcloud.yml` |
+| SonarSource/sonarqube-scan-action | v8.5.0 | `sonarcloud.yml` |
 | Semgrep (immagine) | 1.186.0 | `semgrep.yml` |
 | @lhci/cli | 0.16.1 | `ci-standard.yml` |
 | @axe-core/cli | 4.14.0 | `ci-standard.yml` |

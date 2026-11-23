@@ -9,9 +9,9 @@ ridistribuiti con questo repository: sono scaricati a ogni esecuzione.
 | actions/checkout | v7.0.1 | MIT |
 | actions/setup-node | v7.1.0 | MIT |
 | actions/upload-artifact | v7.0.2 | MIT |
-| actions/dependency-review-action | v5.0.0 | MIT |
+| actions/dependency-review-action | v5.0.1 | MIT |
 | github/codeql-action | v4.39.4 | MIT |
-| SonarSource/sonarqube-scan-action | v8.4.1 | LGPL-3.0 |
+| SonarSource/sonarqube-scan-action | v8.5.0 | LGPL-3.0 |
 | Semgrep (immagine) | 1.186.0 | LGPL-2.1 |
 | @lhci/cli | 0.16.1 | Apache-2.0 |
 | @axe-core/cli | 4.14.0 | MPL-2.0 |

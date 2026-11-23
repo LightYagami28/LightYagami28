@@ -20,14 +20,24 @@ progetti.
 ## Progetti pubblici
 
 | Progetto | Linguaggio | Cosa fa |
-| --- | --- | --- |
+| -------- | ---------- | ------- |
+| [.github](https://github.com/LightYagami28/.github) | Python | File predefiniti della community per i repository di LightYagami28. |
+| [agentcraft](https://github.com/LightYagami28/agentcraft) | — | Gestione di agent AI reali con Minecraft come interfaccia. |
+| [AlphanoGdr](https://github.com/LightYagami28/AlphanoGdr) | PHP | Progetto PHP pubblico. |
 | [bot-lite-downloader](https://github.com/LightYagami28/bot-lite-downloader) | Python | Bot Telegram per scaricare contenuti multimediali (derivato da BotLite). |
-| [TGbotPHP](https://github.com/LightYagami28/TGbotPHP) | PHP | Singola classe PHP per scrivere bot Telegram in modo semplice. |
-| [TgDesktop-multi-account](https://github.com/LightYagami28/TgDesktop-multi-account) | Python | Script per creare e personalizzare più istanze di Telegram Desktop. |
+| [crxlauncher-threat-research](https://github.com/LightYagami28/crxlauncher-threat-research) | Python | Threat intelligence, analisi forense e advisory su un'estensione Chrome. |
+| [edex-ui](https://github.com/LightYagami28/edex-ui) | C# | Terminale sci-fi cross-platform con monitoraggio di sistema. |
+| [flashbrowse](https://github.com/LightYagami28/flashbrowse) | Rust | Browser headless e server MCP basato su AXTree, in Rust. |
 | [hp-probook-640-g1-opensource](https://github.com/LightYagami28/hp-probook-640-g1-opensource) | ASL | Firmware, dump ACPI, topologia hardware e port Coreboot per HP ProBook 640 G1. |
-| [crxlauncher-threat-research](https://github.com/LightYagami28/crxlauncher-threat-research) | HTML | Threat intelligence e advisory di vulnerabilità su un'estensione Chrome. |
-| [edex-ui](https://github.com/LightYagami28/edex-ui) | JavaScript | Manutenzione di eDEX-UI con dipendenze aggiornate. |
-| [LightYagami28](https://github.com/LightYagami28/LightYagami28) | YAML | Questo repository: profilo e [CI standard riusabile](ci-standard/README.md). |
+| [jellyfin-plugin-media-bar](https://github.com/LightYagami28/jellyfin-plugin-media-bar) | C# | Barra dei contenuti in evidenza per Jellyfin. |
+| [LightYagami28](https://github.com/LightYagami28/LightYagami28) | TypeScript | Questo repository: profilo e [CI standard riusabile](ci-standard/README.md). |
+| [mediateca-oss](https://github.com/LightYagami28/mediateca-oss) | C# | Catalogo media Telegram in .NET 11, riscritto a mano da analisi statica. |
+| [misterdownloadmanager](https://github.com/LightYagami28/misterdownloadmanager) | Rust | Gestore di download open-source in Rust per Windows, macOS e Linux. |
+| [nasa-wallpaper](https://github.com/LightYagami28/nasa-wallpaper) | Rust | Cambia lo sfondo del desktop con un'immagine NASA. |
+| [OpenMontage](https://github.com/LightYagami28/OpenMontage) | Python | Sistema open-source di produzione video agentica. |
+| [spotylight](https://github.com/LightYagami28/spotylight) | — | Client musicale self-hosted in stile Spotify per Navidrome. |
+| [TGbotPHP](https://github.com/LightYagami28/TGbotPHP) | PHP | Libreria PHP per scrivere bot Telegram con routing e middleware. |
+| [TgDesktop-multi-account](https://github.com/LightYagami28/TgDesktop-multi-account) | Python | Script per creare e personalizzare più istanze di Telegram Desktop. |
 
 ## Strumenti proprietari
 

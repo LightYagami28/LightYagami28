@@ -78,7 +78,7 @@ jobs:
         env:
           CONFIG: ${{ inputs.lighthouse-config }}
         run: |
-          npm install --global --ignore-scripts @lhci/cli@0.15.1
+          npm install --global --ignore-scripts @lhci/cli@0.16.1
           lhci autorun --config="$CONFIG"
       - name: axe
         if: inputs.axe-dir != ''

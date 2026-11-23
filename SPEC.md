@@ -9,7 +9,7 @@ allineata ai file e senza avvisi.
 
 ## Stato attuale verificato
 
-Letto dai file il 2026-11-11.
+Letto dai file il 2026-11-23.
 
 | Elemento | Stato | File |
 | --- | --- | --- |
@@ -32,18 +32,18 @@ Versioni lette dai workflow:
 | actions/setup-node | v7.1.0 | `ci-standard.yml` |
 | actions/upload-artifact | v7.0.2 | `ci-standard.yml` |
 | actions/dependency-review-action | v5.0.0 | `ci-standard.yml` |
-| github/codeql-action (init, analyze) | v4.39.3 | `codeql-standard.yml` |
+| github/codeql-action (init, analyze) | v4.39.4 | `codeql-standard.yml` |
 | SonarSource/sonarqube-scan-action | v8.4.1 | `sonarcloud.yml` |
-| Semgrep (immagine) | 1.183.0 | `semgrep.yml` |
-| @lhci/cli | 0.15.1 | `ci-standard.yml` |
+| Semgrep (immagine) | 1.186.0 | `semgrep.yml` |
+| @lhci/cli | 0.16.1 | `ci-standard.yml` |
 | @axe-core/cli | 4.14.0 | `ci-standard.yml` |
 | Node (default dell'input) | 26 | `ci-standard.yml` |
 
 Incongruenze trovate:
 
-- `ci-standard/README.md` elenca `github/codeql-action` v4.39.1 (SHA
-  `9b32540...`); i workflow usano v4.39.3 (`33d7b85...`). Da allineare
-  (requisito 6).
+- Versioni allineate il 2026-11-23: `ci-standard/README.md`, `SPEC.md`,
+  `THIRD_PARTY_NOTICES.md` e i workflow usano `github/codeql-action` v4.39.4
+  (SHA `1bd86f2...`), `@lhci/cli` 0.16.1 e Semgrep 1.186.0 (requisito 6).
 - `sonar.sources` comprende `docs` e `ci-standard/esempio/src`; la copertura
   arriva da `npm run coverage` nel workflow SonarCloud (requisito 8).
 - `.stylelintrc.json` è presente ma nessun `package.json` o workflow lo esegue.

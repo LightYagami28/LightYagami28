@@ -1,10 +1,9 @@
 # Roadmap
 
-Stato al 2026-11-16. I requisiti di fondo sono in [SPEC.md](SPEC.md).
+Stato al 2026-11-23. I requisiti di fondo sono in [SPEC.md](SPEC.md).
 
-1. Allineare `ci-standard/README.md` alle versioni realmente usate dai workflow
-(CodeQL v4.39.3):
-   oggi elenca la v4.39.1.
+1. Versioni di CodeQL, Lighthouse CI e Semgrep allineate tra workflow, guide e
+   avvisi il 2026-11-23 (CodeQL v4.39.4, `@lhci/cli` 0.16.1, Semgrep 1.186.0).
 2. Decidere se eseguire `.stylelintrc.json` in un workflow o rimuoverlo: nessun
 workflow lo usa.
 3. Far arrivare la copertura a SonarCloud con `npm run coverage` per

@@ -13,7 +13,7 @@ Letto dai file il 2026-11-11.
 
 | Elemento | Stato | File |
 | --- | --- | --- |
-| Profilo con tabella di 7 progetti pubblici | presente | `README.md` |
+| Profilo con tabella di 17 progetti pubblici | presente | `README.md` |
 | Workflow `ci-standard` (`workflow_call`) | presente | `.github/workflows/ci-standard.yml` |
 | Workflow `codeql-standard` (`workflow_call`) | presente | `.github/workflows/codeql-standard.yml` |
 | Prova dei due workflow su un progetto di esempio | presente, scatta su PR e push su `main` che toccano `ci-standard/**` o i workflow | `.github/workflows/ci-standard-prova.yml`, `ci-standard/esempio/` |
